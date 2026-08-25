@@ -3,556 +3,327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Something For You ♡</title>
+<title>For You ♡</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --pink:#ff7eb3;
-  --light-pink:#ffd6e3;
-  --soft-pink:#ffeaf1;
-  --blush:#fff0f5;
-  --deep-pink:#e05285;
-  --rose:#c94070;
-  --warm-pink:#ffacc5;
-  --peach:#ffe0e8;
-  --white:#fffbfc;
-  --text:#4a2030;
-  --muted:#a07080;
-  --cream:#fff8fa;
+  --cream:#fdf5f2;
+  --cream-deep:#f8e9e6;
+  --rose-50:#fdf0f2;
+  --rose-100:#f8dde3;
+  --rose-200:#f0c2ce;
+  --rose-300:#e3a3b8;
+  --rose-400:#cf7f9a;
+  --rose-600:#a8547a;
+  --rose-800:#7a3a5c;
+  --ink:#432636;
+  --ink-soft:#8a6879;
+  --gold:#c9a574;
+  --gold-soft:#e3cfa6;
+  --paper:#fffcfb;
+  --shadow-color:220,110,140;
 }
 
 html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 
 body{
   min-height:100vh;
   font-family:"DM Sans",sans-serif;
-  color:var(--text);
+  color:var(--ink);
   background:
-    radial-gradient(ellipse at 10% 10%,rgba(255,180,210,.5),transparent 40%),
-    radial-gradient(ellipse at 90% 15%,rgba(255,200,220,.6),transparent 35%),
-    radial-gradient(ellipse at 50% 90%,rgba(255,170,200,.35),transparent 40%),
-    radial-gradient(ellipse at 30% 60%,rgba(255,220,235,.3),transparent 30%),
-    linear-gradient(180deg,#fff5f8 0%,#ffeef3 50%,#fff0f5 100%);
+    radial-gradient(ellipse 700px 500px at 8% 6%, rgba(240,170,190,.28), transparent 60%),
+    radial-gradient(ellipse 600px 500px at 96% 10%, rgba(230,190,160,.22), transparent 55%),
+    radial-gradient(ellipse 800px 600px at 50% 100%, rgba(230,150,175,.16), transparent 55%),
+    linear-gradient(175deg,#fefaf8 0%,#fdf3f1 45%,#faeee9 100%);
   overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* ========== FLOATING ELEMENTS ========== */
-.petal{
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  animation:fallPetal linear forwards;
+/* fine grain texture for a premium paper feel */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+::selection{background:var(--rose-200);color:var(--ink)}
+
+/* ========== AMBIENT FLOATING ELEMENTS ========== */
+.petal{position:fixed;pointer-events:none;z-index:0;animation:fallPetal linear forwards;will-change:transform,opacity}
 @keyframes fallPetal{
-  0%{transform:translateY(-10vh) rotate(0deg) translateX(0);opacity:0}
-  10%{opacity:.7}
-  50%{transform:translateY(50vh) rotate(180deg) translateX(30px)}
-  100%{transform:translateY(110vh) rotate(360deg) translateX(-20px);opacity:0}
+  0%{transform:translateY(-8vh) rotate(0deg) translateX(0);opacity:0}
+  12%{opacity:.55}
+  55%{transform:translateY(55vh) rotate(160deg) translateX(24px)}
+  100%{transform:translateY(112vh) rotate(320deg) translateX(-16px);opacity:0}
 }
-
-.sparkle{
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  color:rgba(255,180,210,.6);
-  animation:twinkle 3s ease-in-out infinite;
-}
-@keyframes twinkle{
-  0%,100%{opacity:0;transform:scale(.5)}
-  50%{opacity:1;transform:scale(1.2)}
-}
-
-.heart-float{
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  animation:floatUp linear forwards;
-}
-@keyframes floatUp{
-  0%{transform:translateY(100vh) rotate(0deg) scale(.8);opacity:0}
-  15%{opacity:.4}
-  85%{opacity:.3}
-  100%{transform:translateY(-15vh) rotate(20deg) scale(1.1);opacity:0}
-}
+.sparkle{position:fixed;pointer-events:none;z-index:0;color:rgba(201,165,116,.55);animation:twinkle 3.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:.9;transform:scale(1.05)}}
 
 /* ========== INTRO ========== */
 #intro{
   position:fixed;inset:0;z-index:100;
   display:flex;align-items:center;justify-content:center;
   background:
-    radial-gradient(circle at 30% 30%,rgba(255,200,220,.8),transparent 50%),
-    radial-gradient(circle at 70% 60%,rgba(255,180,210,.6),transparent 40%),
-    radial-gradient(circle at 50% 80%,rgba(255,220,235,.5),transparent 30%),
-    linear-gradient(145deg,#ffe8f0 0%,#ffd4e2 40%,#ffb8d0 100%);
-  transition:opacity 1.4s ease,visibility 1.4s ease;
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,.35), transparent 45%),
+    radial-gradient(circle at 75% 75%, rgba(210,120,150,.28), transparent 50%),
+    linear-gradient(160deg,#f6e2df 0%,#f0c9d1 45%,#e2a8bc 100%);
+  transition:opacity 1.3s ease, visibility 1.3s ease;
   overflow:hidden;
 }
 #intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.14);filter:blur(50px)}
+.intro-deco:nth-child(1){width:340px;height:340px;top:-100px;left:-80px}
+.intro-deco:nth-child(2){width:420px;height:420px;bottom:-120px;right:-100px;background:rgba(150,60,90,.12)}
 
-.intro-deco{
-  position:absolute;
-  width:300px;height:300px;
+.seal{
+  width:64px;height:64px;margin:0 auto 28px;position:relative;
   border-radius:50%;
-  background:rgba(255,255,255,.15);
-  filter:blur(40px);
+  background:radial-gradient(circle at 35% 30%, #d9a4b6, #a8547a 70%);
+  box-shadow:0 10px 30px rgba(120,40,70,.35), inset 0 2px 4px rgba(255,255,255,.35);
+  display:flex;align-items:center;justify-content:center;
+  animation:sealIn 1.4s cubic-bezier(.2,.8,.2,1);
 }
-.intro-deco:nth-child(1){top:-80px;left:-60px}
-.intro-deco:nth-child(2){bottom:-100px;right:-80px;width:400px;height:400px}
-
-.intro-content{
-  text-align:center;padding:30px;
-  position:relative;z-index:2;
-  animation:introIn 1.8s cubic-bezier(.2,.8,.2,1);
+.seal::after{
+  content:"♡";
+  color:rgba(255,244,246,.92);
+  font-size:22px;
+  transform:translateY(-1px);
 }
-@keyframes introIn{
-  from{opacity:0;transform:translateY(40px) scale(.95)}
-  to{opacity:1;transform:none}
-}
-
-.intro-flower{
-  display:inline-block;
-  margin-bottom:15px;
-  animation:gentleSway 3s ease-in-out infinite;
-}
-@keyframes gentleSway{
-  0%,100%{transform:rotate(-5deg)}
-  50%{transform:rotate(5deg)}
+@keyframes sealIn{
+  0%{opacity:0;transform:scale(.4) rotate(-25deg)}
+  60%{opacity:1}
+  100%{opacity:1;transform:scale(1) rotate(0)}
 }
 
-.intro-label{
-  font-size:10px;letter-spacing:.4em;text-transform:uppercase;
-  color:#a55a76;margin-bottom:22px;
-}
+.intro-content{text-align:center;padding:30px;position:relative;z-index:2;animation:introIn 1.6s cubic-bezier(.2,.8,.2,1)}
+@keyframes introIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+.intro-label{font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:#7a3a54;margin-bottom:20px;font-weight:500}
 
 .intro-content h1{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(60px,13vw,130px);
-  font-weight:400;line-height:.85;
-  color:#6e2d47;
-  text-shadow:0 2px 30px rgba(200,80,120,.15);
+  font-family:"Fraunces",serif;
+  font-size:clamp(52px,11vw,104px);
+  font-weight:400;line-height:.92;
+  color:#4c2438;
+  text-shadow:0 2px 40px rgba(150,60,90,.12);
 }
-.intro-content h1 em{
-  color:var(--deep-pink);font-style:italic;
-}
+.intro-content h1 em{font-style:italic;font-weight:500;color:#8a3f5f}
 
 .intro-sub{
-  margin-top:28px;color:#8a6070;font-size:13px;line-height:2;
-  max-width:380px;margin-left:auto;margin-right:auto;
+  margin-top:24px;color:#7c455a;font-size:13.5px;line-height:1.9;
+  max-width:360px;margin-left:auto;margin-right:auto;font-weight:400;
 }
 
 .open-btn{
-  margin-top:35px;
-  border:none;
-  background:linear-gradient(135deg,#fff8fb,#ffe8f0);
-  color:#b84d72;
-  padding:16px 32px;border-radius:999px;
-  font-family:inherit;font-size:10px;
-  letter-spacing:.2em;text-transform:uppercase;
-  cursor:pointer;
-  box-shadow:0 10px 40px rgba(180,70,110,.15),0 0 0 1px rgba(255,200,220,.5);
-  transition:.4s cubic-bezier(.2,.8,.2,1);
+  margin-top:34px;border:none;
+  background:linear-gradient(155deg,#fffaf9,#fce4ea);
+  color:#8a3f5f;padding:16px 34px;border-radius:999px;
+  font-family:inherit;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:600;cursor:pointer;
+  box-shadow:0 12px 34px rgba(120,40,70,.22), 0 0 0 1px rgba(255,255,255,.5) inset;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
   position:relative;overflow:hidden;
 }
 .open-btn::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.6) 50%,transparent 60%);
-  transform:translateX(-100%);
-  transition:.6s;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);
+  transform:translateX(-100%);transition:.6s;
 }
 .open-btn:hover::after{transform:translateX(100%)}
-.open-btn:hover{
-  transform:translateY(-4px) scale(1.04);
-  box-shadow:0 18px 50px rgba(180,70,110,.22),0 0 0 1px rgba(255,200,220,.6);
-}
+.open-btn:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(120,40,70,.28), 0 0 0 1px rgba(255,255,255,.6) inset}
+.open-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
 /* ========== MAIN ========== */
-main{
-  position:relative;z-index:2;
-  opacity:0;transition:opacity 1.8s ease;
-}
+main{position:relative;z-index:2;opacity:0;transition:opacity 1.6s ease}
 main.show{opacity:1}
 
-/* ========== HERO ========== */
-.hero{
-  min-height:92vh;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:100px 25px;position:relative;
-}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
 
-.hero-inner{max-width:720px;position:relative;z-index:2}
+/* ========== HERO ========== */
+.hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:110px 25px 90px;position:relative}
+.hero-inner{max-width:680px;position:relative;z-index:2}
 
 .hero-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  text-transform:uppercase;letter-spacing:.35em;font-size:9px;
-  color:#b06c84;
-  background:rgba(255,220,235,.5);
-  padding:8px 18px;border-radius:999px;
-  border:1px solid rgba(255,200,220,.6);
+  display:inline-flex;align-items:center;gap:9px;
+  text-transform:uppercase;letter-spacing:.32em;font-size:9.5px;font-weight:500;
+  color:#a04f70;background:rgba(255,255,255,.5);
+  padding:9px 20px;border-radius:999px;border:1px solid rgba(230,170,190,.55);
+  backdrop-filter:blur(6px);
 }
-.hero-tag .dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--pink);
-  animation:pulse 2s ease infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--rose-400);animation:pulse 2.2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
 
 .hero h2{
-  margin-top:28px;
-  font-family:"Playfair Display",serif;
-  font-size:clamp(42px,8vw,82px);
-  font-weight:400;line-height:1.05;
-  color:#552840;
+  margin-top:26px;font-family:"Fraunces",serif;
+  font-size:clamp(38px,7vw,72px);font-weight:400;line-height:1.08;color:var(--ink);
 }
-.hero h2 em{color:var(--deep-pink);font-style:italic}
+.hero h2 em{font-style:italic;font-weight:500;color:var(--rose-600)}
 
-.hero p{
-  margin:22px auto 0;max-width:520px;
-  color:#987582;font-size:13px;line-height:2;
-}
+.hero p{margin:22px auto 0;max-width:480px;color:var(--ink-soft);font-size:14px;line-height:1.9}
 
-.scroll-hint{
-  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-}
-.scroll-hint span{
-  font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:#c49aaa;
-}
-.scroll-line{
-  width:1px;height:30px;
-  background:linear-gradient(to bottom,#d59caf,transparent);
-  animation:scrollPulse 2s ease infinite;
-}
-@keyframes scrollPulse{
-  0%,100%{opacity:.3;transform:scaleY(.7)}
-  50%{opacity:1;transform:scaleY(1)}
-}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px}
+.scroll-hint span{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:#c090a0}
+.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,#cf93a8,transparent);animation:scrollPulse 2.2s ease infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
 
-/* ========== DECORATIVE DIVIDER ========== */
-.divider{
-  display:flex;align-items:center;justify-content:center;
-  gap:15px;padding:20px 25px;
-}
-.divider-line{width:60px;height:1px;background:linear-gradient(to right,transparent,#f0b8cc,transparent)}
-.divider-heart{color:var(--warm-pink);font-size:14px;animation:heartbeat 1.8s infinite}
-@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+/* ========== DIVIDER ========== */
+.divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 25px 30px}
+.divider-line{width:52px;height:1px;background:linear-gradient(to right,transparent,#e4aebd,transparent)}
+.divider-heart{color:var(--rose-400);font-size:13px}
 
 /* ========== SECTION TITLE ========== */
-.section-title{text-align:center;margin-bottom:50px}
-.section-label{
-  font-size:9px;letter-spacing:.35em;text-transform:uppercase;
-  color:var(--rose);
-  display:inline-flex;align-items:center;gap:8px;
-}
-.section-label::before,.section-label::after{
-  content:"";width:20px;height:1px;background:var(--light-pink);
-}
-.section-title h2{
-  margin-top:14px;
-  font-family:"Playfair Display",serif;
-  font-size:clamp(38px,6vw,58px);
-  font-weight:400;color:#552840;
-}
-.section-title p{margin-top:6px;color:var(--muted);font-size:12px}
+.section-title{text-align:center;margin-bottom:52px}
+.section-label{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--rose-600);display:inline-flex;align-items:center;gap:9px;font-weight:600}
+.section-label::before,.section-label::after{content:"";width:22px;height:1px;background:var(--rose-200)}
+.section-title h2{margin-top:16px;font-family:"Fraunces",serif;font-size:clamp(32px,5.4vw,50px);font-weight:400;color:var(--ink)}
+.section-title p{margin-top:8px;color:var(--ink-soft);font-size:12.5px;font-style:italic}
 
 /* ========== GIFT GRID ========== */
-.gifts{max-width:1100px;margin:auto;padding:50px 25px 120px}
+.gifts{max-width:1080px;margin:auto;padding:20px 25px 130px}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:880px){.gift-grid{grid-template-columns:1fr;max-width:440px;margin:auto;gap:20px}}
 
-.gift-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
-}
-@media(max-width:860px){
-  .gift-grid{grid-template-columns:1fr;max-width:420px;margin:auto}
-}
-
-/* ========== GIFT CARD ========== */
 .gift{
-  position:relative;min-height:430px;border-radius:28px;
-  background:linear-gradient(155deg,rgba(255,255,255,.9),rgba(255,240,245,.85));
-  border:1px solid rgba(255,220,230,.8);
-  box-shadow:0 20px 60px rgba(180,70,110,.1),0 0 0 1px rgba(255,255,255,.6) inset;
+  position:relative;min-height:410px;border-radius:24px;
+  background:linear-gradient(160deg, rgba(255,253,252,.92), rgba(253,238,240,.88));
+  border:1px solid rgba(240,195,210,.7);
+  box-shadow:0 18px 50px rgba(var(--shadow-color),.1), 0 0 0 1px rgba(255,255,255,.5) inset;
   overflow:hidden;cursor:pointer;
-  transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s ease;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease, border-color .5s ease;
 }
-.gift::before{
-  content:"";position:absolute;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,180,210,.25),transparent 70%);
-  top:-90px;right:-80px;
-}
-.gift::after{
-  content:"";position:absolute;
-  width:150px;height:150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,200,220,.15),transparent 70%);
-  bottom:-60px;left:-50px;
-}
-.gift:hover{
-  transform:translateY(-14px) scale(1.01);
-  box-shadow:0 35px 80px rgba(180,70,110,.18),0 0 0 1px rgba(255,255,255,.8) inset;
-}
+.gift::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle, rgba(230,150,175,.18), transparent 70%);top:-80px;right:-70px}
+.gift:hover{transform:translateY(-10px);box-shadow:0 30px 70px rgba(var(--shadow-color),.16), 0 0 0 1px rgba(255,255,255,.6) inset;border-color:rgba(220,150,175,.9)}
+.gift:focus-visible{outline:2px solid var(--rose-600);outline-offset:4px}
 
-.gift-num{
-  position:absolute;top:18px;left:20px;
-  font-size:9px;letter-spacing:.2em;color:#c88aa0;
-  font-weight:500;
-}
+.gift-num{position:absolute;top:22px;left:24px;font-family:"Fraunces",serif;font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.02em}
 
-.gift-inner{
-  min-height:430px;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:30px 25px;position:relative;z-index:2;
-}
+.gift-inner{min-height:410px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:32px 26px;position:relative;z-index:2}
 
-/* ========== CSS GIFT BOX ========== */
-.gift-box{width:120px;height:100px;position:relative;margin-bottom:24px;transition:.5s ease}
-.gift:hover .gift-box{transform:translateY(-8px) rotate(-2deg)}
+/* seal-style icon replacing the gift box */
+.gift-seal{
+  width:68px;height:68px;border-radius:50%;margin-bottom:22px;
+  background:linear-gradient(150deg,#fbe4ea,#eab4c4);
+  box-shadow:0 10px 26px rgba(var(--shadow-color),.18), inset 0 2px 3px rgba(255,255,255,.6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:var(--rose-700,#8a3f5f);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.gift:hover .gift-seal{transform:translateY(-4px) scale(1.06)}
 
-.box-body{
-  position:absolute;left:10px;bottom:0;width:100px;height:70px;
-  border-radius:4px 4px 10px 10px;
-  background:linear-gradient(145deg,#f7a0bd,#e05585);
-  box-shadow:0 12px 25px rgba(200,70,110,.2);
-}
-.box-lid{
-  position:absolute;left:3px;top:15px;width:114px;height:24px;
-  border-radius:5px;
-  background:linear-gradient(145deg,#ffbdd0,#e8709a);
-  transition:.5s ease;
-}
-.gift:hover .box-lid{transform:rotate(-10deg) translate(-4px,-10px)}
-
-.box-ribbon-v{
-  position:absolute;left:54px;bottom:0;width:14px;height:84px;
-  background:linear-gradient(to right,#ffe8ef,#ffd0dd,#ffe8ef);
-}
-.box-ribbon-h{
-  position:absolute;left:3px;top:22px;width:114px;height:7px;
-  background:linear-gradient(to bottom,#ffe8ef,#ffd0dd,#ffe8ef);
-}
-.box-bow{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:30px;height:16px;
-}
-.box-bow::before,.box-bow::after{
-  content:"";position:absolute;top:0;
-  width:18px;height:16px;border-radius:50% 50% 0 0;
-  background:linear-gradient(to bottom,#ffe0ea,#ffc8d8);
-}
-.box-bow::before{left:-2px;transform:rotate(-15deg)}
-.box-bow::after{right:-2px;transform:rotate(15deg)}
-
-.gift h3{
-  font-family:"Playfair Display",serif;
-  font-size:28px;font-weight:500;color:#5e3040;
-}
-.gift .gift-desc{
-  max-width:230px;margin-top:8px;
-  color:#a07888;font-size:11px;line-height:1.75;
-}
-.gift .open-me{
-  margin-top:18px;font-size:8px!important;
-  letter-spacing:.25em;text-transform:uppercase;
-  color:var(--deep-pink)!important;
-  display:flex;align-items:center;gap:6px;
-  justify-content:center;
-}
-.gift .open-me .arrow{
-  display:inline-block;
-  animation:arrowBounce 1.5s ease infinite;
-}
-@keyframes arrowBounce{
-  0%,100%{transform:translateX(0)}
-  50%{transform:translateX(4px)}
-}
+.gift h3{font-family:"Fraunces",serif;font-size:24px;font-weight:500;color:var(--ink)}
+.gift .gift-desc{max-width:220px;margin-top:9px;color:var(--ink-soft);font-size:12px;line-height:1.75}
+.gift .open-me{margin-top:20px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--rose-600);font-weight:600;display:flex;align-items:center;gap:6px;justify-content:center}
+.gift .open-me .arrow{display:inline-block;animation:arrowBounce 1.6s ease infinite}
+@keyframes arrowBounce{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
 
 /* ========== MODAL ========== */
 .modal{
-  position:fixed;inset:0;z-index:200;
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;
-  background:rgba(60,20,35,.4);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  opacity:0;visibility:hidden;
-  transition:.5s ease;
+  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:rgba(60,25,40,.42);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  opacity:0;visibility:hidden;transition:.45s ease;
 }
 .modal.open{opacity:1;visibility:visible}
-
 .modal-card{
-  position:relative;width:min(820px,100%);max-height:90vh;
-  overflow-y:auto;overflow-x:hidden;
-  padding:40px;border-radius:30px;
-  background:
-    linear-gradient(155deg,rgba(255,255,255,.98),rgba(255,242,248,.97));
-  box-shadow:0 40px 100px rgba(80,25,45,.25),0 0 0 1px rgba(255,230,240,.5);
-  transform:translateY(30px) scale(.95);
-  transition:.55s cubic-bezier(.2,.8,.2,1);
+  position:relative;width:min(780px,100%);max-height:88vh;overflow-y:auto;overflow-x:hidden;
+  padding:44px 40px;border-radius:26px;
+  background:linear-gradient(160deg, rgba(255,253,252,.99), rgba(253,240,242,.98));
+  box-shadow:0 40px 100px rgba(70,25,45,.28), 0 0 0 1px rgba(255,235,240,.6);
+  transform:translateY(24px) scale(.97);transition:.5s cubic-bezier(.2,.8,.2,1);
 }
-.modal-card::-webkit-scrollbar{width:6px}
+.modal-card::-webkit-scrollbar{width:5px}
 .modal-card::-webkit-scrollbar-track{background:transparent}
-.modal-card::-webkit-scrollbar-thumb{background:var(--light-pink);border-radius:3px}
+.modal-card::-webkit-scrollbar-thumb{background:var(--rose-200);border-radius:3px}
 .modal.open .modal-card{transform:none}
 
 .close-btn{
-  position:absolute;top:16px;right:16px;z-index:10;
-  width:40px;height:40px;border:none;border-radius:50%;
-  background:linear-gradient(135deg,#ffe4ec,#ffd4e0);
-  color:#a54f6e;font-size:22px;line-height:1;
-  cursor:pointer;transition:.35s;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 15px rgba(200,80,120,.1);
+  position:absolute;top:18px;right:18px;z-index:10;width:38px;height:38px;border:none;border-radius:50%;
+  background:linear-gradient(150deg,#fceef1,#f6d8e0);color:#95445f;font-size:20px;line-height:1;
+  cursor:pointer;transition:.35s;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(var(--shadow-color),.12);
 }
-.close-btn:hover{transform:rotate(90deg) scale(1.1);background:linear-gradient(135deg,#ffd8e4,#ffc8d8)}
+.close-btn:hover{transform:rotate(90deg) scale(1.08);background:linear-gradient(150deg,#f8dde5,#f2c8d4)}
+.close-btn:focus-visible{outline:2px solid var(--rose-600);outline-offset:2px}
 
-.modal-label{
-  font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);
-}
-.modal h3{
-  margin-top:10px;
-  font-family:"Playfair Display",serif;
-  font-size:clamp(36px,5vw,50px);font-weight:400;color:#5e2d42;
-}
+.modal-label{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-600);font-weight:600}
+.modal h3{margin-top:12px;font-family:"Fraunces",serif;font-size:clamp(30px,4.6vw,44px);font-weight:400;color:var(--ink)}
 
 /* ========== PHOTO MODAL ========== */
 .photo-wrap{
-  margin-top:22px;border-radius:18px;overflow:hidden;
-  box-shadow:0 15px 50px rgba(140,50,80,.12);
-  border:1px solid rgba(255,220,230,.6);
-  background:var(--blush);
+  margin-top:24px;border-radius:16px;overflow:hidden;position:relative;
+  box-shadow:0 20px 55px rgba(120,45,75,.16);border:6px solid var(--paper);
+  background:var(--rose-50);
 }
-.photo-wrap img{width:100%;display:block;max-height:60vh;object-fit:contain}
+.photo-wrap::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(200,140,160,.25);
+  border-radius:10px;
+}
+.photo-wrap img{width:100%;display:block;max-height:58vh;object-fit:contain;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.photo-wrap:hover img{transform:scale(1.02)}
 
 .photo-caption{
-  text-align:center;margin-top:16px;
-  color:var(--muted);font-size:11px;font-style:italic;
-  font-family:"Cormorant Garamond",serif;font-size:15px;
+  text-align:center;margin-top:18px;color:var(--ink-soft);
+  font-family:"Fraunces",serif;font-style:italic;font-size:16px;
 }
 
 /* ========== LETTER MODAL ========== */
-.letter-content{max-width:640px;margin:15px auto 0;text-align:center}
-
-.letter-hearts{
-  display:flex;justify-content:center;gap:8px;
-  margin:18px 0 25px;font-size:16px;color:#e88aaa;
-}
-.letter-hearts span:nth-child(2){font-size:28px;animation:heartbeat 1.7s infinite;color:var(--deep-pink)}
-
-.letter-content p{
-  margin-top:18px;color:#7a5565;font-size:14px;line-height:2.1;
-}
-.letter-content strong{color:var(--rose);font-weight:600}
-
-.letter-sign{
-  margin-top:32px;
-  font-family:"Playfair Display",serif;
-  font-size:24px;font-style:italic;color:#9f4e69;
-}
+.letter-content{max-width:600px;margin:14px auto 0;text-align:center}
+.letter-hearts{display:flex;justify-content:center;gap:9px;margin:20px 0 26px;font-size:15px;color:#d98ba8}
+.letter-hearts span:nth-child(2){font-size:24px;color:var(--rose-600)}
+.letter-content p{margin-top:18px;color:#6b485a;font-size:14.5px;line-height:2.05;text-align:left}
+.letter-content strong{color:var(--rose-600);font-weight:600}
+.letter-sign{margin-top:34px;font-family:"Fraunces",serif;font-size:22px;font-style:italic;color:#8a3f5f}
 
 /* ========== CUTE MODAL ========== */
-.cute-content{text-align:center;padding:20px 10px}
-
+.cute-content{text-align:center;padding:16px 6px}
 .cute-heart-btn{
-  width:100px;height:100px;margin:35px auto;position:relative;
-  transform:rotate(-45deg);
-  background:linear-gradient(145deg,#ffb0c8,#e0608a);
-  border-radius:14px 0 14px 0;
-  cursor:pointer;
-  box-shadow:0 15px 50px rgba(210,82,120,.28),0 0 60px rgba(255,150,180,.15);
-  transition:.4s cubic-bezier(.2,.8,.2,1);
+  width:92px;height:92px;margin:32px auto;position:relative;transform:rotate(-45deg);
+  background:linear-gradient(150deg,#f0a9c0,#c6567f);border-radius:12px 0 12px 0;cursor:pointer;
+  box-shadow:0 15px 44px rgba(190,75,110,.3), 0 0 50px rgba(240,150,180,.15);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
 }
-.cute-heart-btn::before,.cute-heart-btn::after{
-  content:"";position:absolute;
-  width:100px;height:100px;border-radius:50%;background:inherit;
-}
-.cute-heart-btn::before{top:-50px;left:0}
-.cute-heart-btn::after{top:0;left:50px}
-.cute-heart-btn:hover{transform:rotate(-45deg) scale(1.12);box-shadow:0 20px 60px rgba(210,82,120,.35),0 0 80px rgba(255,150,180,.2)}
+.cute-heart-btn::before,.cute-heart-btn::after{content:"";position:absolute;width:92px;height:92px;border-radius:50%;background:inherit}
+.cute-heart-btn::before{top:-46px;left:0}
+.cute-heart-btn::after{top:0;left:46px}
+.cute-heart-btn:hover{transform:rotate(-45deg) scale(1.1);box-shadow:0 20px 54px rgba(190,75,110,.36), 0 0 65px rgba(240,150,180,.2)}
+.cute-heart-btn:focus-visible{outline:2px solid var(--rose-600);outline-offset:6px}
 
-.cute-msg{
-  font-family:"Playfair Display",serif;
-  font-size:26px;color:#6e3550;margin-top:18px;
-}
-.cute-hint{margin-top:6px;color:var(--muted);font-size:11px}
+.cute-msg{font-family:"Fraunces",serif;font-size:24px;font-style:italic;color:var(--ink);margin-top:16px}
+.cute-hint{margin-top:6px;color:var(--ink-soft);font-size:11px;letter-spacing:.04em}
 
-.reasons-list{
-  display:none;flex-wrap:wrap;justify-content:center;gap:10px;
-  margin-top:25px;
-}
-.reasons-list.show{display:flex;animation:fadeUp .7s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.reasons-list{display:none;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+.reasons-list.show{display:flex;animation:fadeUp .6s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 .reason-chip{
-  padding:10px 16px;border-radius:999px;
-  background:linear-gradient(135deg,#fff,#fff5f8);
-  border:1px solid var(--light-pink);
-  color:#a05070;font-size:11px;
-  box-shadow:0 4px 15px rgba(200,80,120,.06);
-  transition:.3s;
+  padding:9px 16px;border-radius:999px;background:linear-gradient(150deg,#fff,#fdf1f4);
+  border:1px solid var(--rose-200);color:var(--rose-600);font-size:11.5px;font-weight:500;
+  box-shadow:0 4px 14px rgba(var(--shadow-color),.06);transition:.3s;
 }
-.reason-chip:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(200,80,120,.12);
-  border-color:var(--warm-pink);
-}
+.reason-chip:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(var(--shadow-color),.12);border-color:var(--rose-300)}
 
 /* ========== FOOTER ========== */
-footer{
-  text-align:center;padding:20px 20px 60px;
-  color:#c4a0b0;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-}
-footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;display:inline-block}
-
-/* ========== CSS FLOWER ========== */
-.css-flower{display:inline-block;position:relative;width:40px;height:40px}
-.css-flower .petal{
-  position:absolute;width:14px;height:14px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#ffc8d8,#ffa0bc);
-  left:50%;top:50%;
-}
-.css-flower .petal:nth-child(1){transform:translate(-50%,-50%) translateY(-10px)}
-.css-flower .petal:nth-child(2){transform:translate(-50%,-50%) translate(10px,0)}
-.css-flower .petal:nth-child(3){transform:translate(-50%,-50%) translateY(10px)}
-.css-flower .petal:nth-child(4){transform:translate(-50%,-50%) translate(-10px,0)}
-.css-flower .center{
-  position:absolute;width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,#ffe0a0,#ffcc70);
-  left:50%;top:50%;transform:translate(-50%,-50%);
-  box-shadow:0 0 8px rgba(255,200,100,.4);
-}
-
-/* ========== CSS ENVELOPE ========== */
-.css-envelope{
-  display:inline-block;position:relative;width:50px;height:35px;
-}
-.css-envelope .env-body{
-  width:50px;height:30px;border-radius:3px;
-  background:linear-gradient(145deg,#ffd4e2,#ffb8cc);
-  position:absolute;bottom:0;
-  box-shadow:0 3px 10px rgba(200,80,120,.12);
-}
-.css-envelope .env-flap{
-  width:0;height:0;
-  border-left:25px solid transparent;border-right:25px solid transparent;
-  border-top:18px solid #ffc8d8;
-  position:absolute;top:0;
-  transition:.3s;
-}
-.css-envelope .env-heart{
-  position:absolute;top:10px;left:50%;transform:translateX(-50%);
-  color:var(--deep-pink);font-size:10px;
-  animation:heartbeat 1.8s infinite;
-}
+footer{text-align:center;padding:20px 20px 60px;color:#c19aa8;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+footer .footer-heart{color:var(--rose-400);display:inline-block}
 
 /* ========== RESPONSIVE ========== */
 @media(max-width:600px){
-  .modal-card{padding:28px 18px}
-  .modal h3{font-size:34px}
-  .letter-content p{font-size:13px}
-  .hero{min-height:85vh}
-  .gift{min-height:380px}
-  .gift-inner{min-height:380px}
+  .modal-card{padding:32px 22px}
+  .modal h3{font-size:30px}
+  .letter-content p{font-size:13.5px}
+  .hero{min-height:82vh;padding:100px 20px 80px}
+  .gift{min-height:360px}
+  .gift-inner{min-height:360px;padding:28px 22px}
+  .gifts{padding:10px 18px 100px}
 }
 </style>
 </head>
@@ -563,19 +334,10 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
   <div class="intro-deco"></div>
   <div class="intro-deco"></div>
   <div class="intro-content">
-    <div class="intro-flower">
-      <div class="css-flower" style="transform:scale(1.3)">
-        <div class="petal"></div><div class="petal"></div>
-        <div class="petal"></div><div class="petal"></div>
-        <div class="center"></div>
-      </div>
-    </div>
+    <div class="seal"></div>
     <div class="intro-label">a tiny gift wrapped in love</div>
     <h1>For<br><em>you.</em></h1>
-    <p class="intro-sub">
-      I couldn't fit everything I wanted to say<br>
-      into a real box… so I made this instead.
-    </p>
+    <p class="intro-sub">I couldn't fit everything I wanted to say into a real box… so I made this instead.</p>
     <button class="open-btn" id="openSite">Open your gift ♡</button>
   </div>
 </section>
@@ -585,29 +347,19 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-tag">
-        <span class="dot"></span>
-        something i made just for you
-      </div>
+    <div class="hero-inner reveal">
+      <div class="hero-tag"><span class="dot"></span>something i made just for you</div>
       <h2>I have a few things<br>I wanted to say <em>properly.</em></h2>
       <p>So here's a little corner of the internet that belongs only to you. Three little gifts are waiting below — take your time with them.</p>
     </div>
-    <div class="scroll-hint">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+    <div class="scroll-hint"><span>scroll</span><div class="scroll-line"></div></div>
   </section>
 
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-heart">♡</div>
-    <div class="divider-line"></div>
-  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-heart">♡</div><div class="divider-line"></div></div>
 
   <!-- GIFTS -->
   <section class="gifts">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div class="section-label">three little gifts</div>
       <h2>Pick one ♡</h2>
       <p>though i made all three for you…</p>
@@ -615,51 +367,30 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
 
     <div class="gift-grid">
 
-      <!-- GIFT 1 -->
-      <div class="gift" data-modal="photoModal">
-        <div class="gift-num">01</div>
+      <div class="gift reveal" data-modal="photoModal" tabindex="0" role="button" aria-label="Open a little memory">
+        <div class="gift-num">I.</div>
         <div class="gift-inner">
-          <div class="gift-box">
-            <div class="box-body"></div>
-            <div class="box-ribbon-v"></div>
-            <div class="box-ribbon-h"></div>
-            <div class="box-lid"></div>
-            <div class="box-bow"></div>
-          </div>
+          <div class="gift-seal">✿</div>
           <h3>A little memory</h3>
           <p class="gift-desc">Something I wanted you to keep in this tiny digital corner.</p>
           <div class="open-me">open me <span class="arrow">→</span></div>
         </div>
       </div>
 
-      <!-- GIFT 2 -->
-      <div class="gift" data-modal="letterModal">
-        <div class="gift-num">02</div>
+      <div class="gift reveal" data-modal="letterModal" tabindex="0" role="button" aria-label="Open a little letter">
+        <div class="gift-num">II.</div>
         <div class="gift-inner">
-          <div class="gift-box">
-            <div class="box-body"></div>
-            <div class="box-ribbon-v"></div>
-            <div class="box-ribbon-h"></div>
-            <div class="box-lid"></div>
-            <div class="box-bow"></div>
-          </div>
+          <div class="gift-seal">✉</div>
           <h3>A little letter</h3>
           <p class="gift-desc">The things I should have said properly — and meant it.</p>
           <div class="open-me">open me <span class="arrow">→</span></div>
         </div>
       </div>
 
-      <!-- GIFT 3 -->
-      <div class="gift" data-modal="cuteModal">
-        <div class="gift-num">03</div>
+      <div class="gift reveal" data-modal="cuteModal" tabindex="0" role="button" aria-label="Open one more thing">
+        <div class="gift-num">III.</div>
         <div class="gift-inner">
-          <div class="gift-box">
-            <div class="box-body"></div>
-            <div class="box-ribbon-v"></div>
-            <div class="box-ribbon-h"></div>
-            <div class="box-lid"></div>
-            <div class="box-bow"></div>
-          </div>
+          <div class="gift-seal">♡</div>
           <h3>One more thing</h3>
           <p class="gift-desc">A tiny reminder of how much you mean to me, always.</p>
           <div class="open-me">open me <span class="arrow">→</span></div>
@@ -669,16 +400,14 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
     </div>
   </section>
 
-  <footer>
-    made with love & a little bit of embarrassment <span class="footer-heart">♡</span>
-  </footer>
+  <footer>made with love & a little bit of embarrassment <span class="footer-heart">♡</span></footer>
 </main>
 
 <!-- PHOTO MODAL -->
-<div class="modal" id="photoModal">
+<div class="modal" id="photoModal" role="dialog" aria-modal="true" aria-label="A little memory">
   <div class="modal-card">
-    <button class="close-btn">×</button>
-    <div class="modal-label">gift 01</div>
+    <button class="close-btn" aria-label="Close">×</button>
+    <div class="modal-label">gift one</div>
     <h3>A little memory ♡</h3>
     <div class="photo-wrap">
       <img src="7249796112_105093272146106602_8734685621293127379670_MU.jpg" alt="A special memory">
@@ -688,40 +417,23 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
 </div>
 
 <!-- LETTER MODAL -->
-<div class="modal" id="letterModal">
+<div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="A little letter">
   <div class="modal-card">
-    <button class="close-btn">×</button>
+    <button class="close-btn" aria-label="Close">×</button>
     <div class="letter-content">
-      <div class="modal-label">gift 02</div>
+      <div class="modal-label">gift two</div>
       <h3>I'm truly sorry. ♡</h3>
-      <div class="letter-hearts">
-        <span>♡</span><span>♥</span><span>♡</span>
-      </div>
+      <div class="letter-hearts"><span>♡</span><span>♥</span><span>♡</span></div>
 
-      <p>
-        I know I said some things I shouldn't have said. I wasn't thinking about how my words would land, and I'm genuinely sorry for that. I should have been more careful — especially with someone I care about this much.
-      </p>
+      <p>I know I said some things I shouldn't have said. I wasn't thinking about how my words would land, and I'm genuinely sorry for that. I should have been more careful — especially with someone I care about this much.</p>
 
-      <p>
-        And about what I said as a joke — I know it wasn't funny. I know it scared you, and I hate myself for making you feel that way. It was stupid and thoughtless, and <strong>I should have never said something like that, even as a joke.</strong> I understand completely why you took it seriously. It wasn't something to joke about, and I'm sorry.
-      </p>
+      <p>And about what I said as a joke — I know it wasn't funny. I know it scared you, and I hate myself for making you feel that way. It was stupid and thoughtless, and <strong>I should have never said something like that, even as a joke.</strong> I understand completely why you took it seriously. It wasn't something to joke about, and I'm sorry.</p>
 
-      <p>
-        I don't want to make excuses. I just need you to know that <strong>I understand why you're angry.</strong> Your feelings are valid, and I should have protected them instead of hurting them.
-      </p>
+      <p>I don't want to make excuses. I just need you to know that <strong>I understand why you're angry.</strong> Your feelings are valid, and I should have protected them instead of hurting them.</p>
 
-      <p>
-        I'm sorry for the hurtful things I said.
-        I'm sorry for the joke that wasn't funny.
-        I'm sorry for making you worry.
-        I'm sorry for not thinking before I spoke.
-      </p>
+      <p>I'm sorry for the hurtful things I said.<br>I'm sorry for the joke that wasn't funny.<br>I'm sorry for making you worry.<br>I'm sorry for not thinking before I spoke.</p>
 
-      <p>
-        Most of all… <strong>I love you.</strong>
-        And I really, really don't want my own stupidity
-        to be the thing that pushes you away.
-      </p>
+      <p>Most of all… <strong>I love you.</strong> And I really, really don't want my own stupidity to be the thing that pushes you away.</p>
 
       <div class="letter-sign">— from someone who's really, truly sorry ♡</div>
     </div>
@@ -729,13 +441,13 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
 </div>
 
 <!-- CUTE MODAL -->
-<div class="modal" id="cuteModal">
+<div class="modal" id="cuteModal" role="dialog" aria-modal="true" aria-label="One tiny secret">
   <div class="modal-card">
-    <button class="close-btn">×</button>
+    <button class="close-btn" aria-label="Close">×</button>
     <div class="cute-content">
-      <div class="modal-label">gift 03</div>
+      <div class="modal-label">gift three</div>
       <h3>One tiny secret…</h3>
-      <div class="cute-heart-btn" id="cuteHeart"></div>
+      <div class="cute-heart-btn" id="cuteHeart" role="button" tabindex="0" aria-label="Reveal reasons"></div>
       <div class="cute-msg">You make my world softer.</div>
       <div class="cute-hint">tap the heart ♡</div>
       <div class="reasons-list" id="reasons">
@@ -752,7 +464,6 @@ footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;di
   </div>
 </div>
 
-<!-- HEART EXPLOSION KEYFRAMES -->
 <style id="explosionStyle"></style>
 
 <script>
@@ -761,106 +472,111 @@ const intro = document.getElementById('intro');
 const main = document.getElementById('main');
 document.getElementById('openSite').addEventListener('click', () => {
   intro.classList.add('hide');
-  setTimeout(() => main.classList.add('show'), 500);
+  setTimeout(() => main.classList.add('show'), 450);
 });
 
 /* ===== MODALS ===== */
 const modals = document.querySelectorAll('.modal');
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAll(){
+  modals.forEach(m => m.classList.remove('open'));
+  document.body.style.overflow = '';
+}
 document.querySelectorAll('.gift').forEach(g => {
-  g.addEventListener('click', () => {
-    document.getElementById(g.dataset.modal).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
+  g.addEventListener('click', () => openModal(g.dataset.modal));
+  g.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(g.dataset.modal); } });
 });
 document.querySelectorAll('.close-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    b.closest('.modal').classList.remove('open');
-    document.body.style.overflow = '';
-  });
+  b.addEventListener('click', () => { b.closest('.modal').classList.remove('open'); document.body.style.overflow = ''; });
 });
 modals.forEach(m => {
-  m.addEventListener('click', e => {
-    if (e.target === m) { m.classList.remove('open'); document.body.style.overflow = ''; }
-  });
+  m.addEventListener('click', e => { if (e.target === m) closeAll(); });
 });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { modals.forEach(m => m.classList.remove('open')); document.body.style.overflow = ''; }
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
 
 /* ===== CUTE HEART ===== */
 const reasons = document.getElementById('reasons');
-document.getElementById('cuteHeart').addEventListener('click', e => {
+const cuteHeart = document.getElementById('cuteHeart');
+function popHearts(x, y){
   reasons.classList.add('show');
-  for (let i = 0; i < 18; i++) {
+  const count = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 14;
+  for (let i = 0; i < count; i++) {
     const h = document.createElement('div');
     h.innerHTML = Math.random() > .5 ? '♥' : '♡';
     h.style.cssText = `position:fixed;z-index:500;pointer-events:none;
-      left:${e.clientX + (Math.random()*160-80)}px;
-      top:${e.clientY + (Math.random()*80-40)}px;
-      color:${['#e8608a','#ff8fb3','#d44a7a','#ffacc5'][Math.floor(Math.random()*4)]};
-      font-size:${10+Math.random()*20}px;
-      animation:heartPop 1.5s ease forwards;`;
+      left:${x + (Math.random()*150-75)}px;
+      top:${y + (Math.random()*70-35)}px;
+      color:${['#c6567f','#e8829e','#a8547a','#f0a9c0'][Math.floor(Math.random()*4)]};
+      font-size:${10+Math.random()*18}px;
+      animation:heartPop 1.4s ease forwards;`;
     document.body.appendChild(h);
-    setTimeout(() => h.remove(), 1500);
+    setTimeout(() => h.remove(), 1400);
+  }
+}
+cuteHeart.addEventListener('click', e => popHearts(e.clientX, e.clientY));
+cuteHeart.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){
+    e.preventDefault();
+    const r = cuteHeart.getBoundingClientRect();
+    popHearts(r.left + r.width/2, r.top + r.height/2);
   }
 });
 
-/* ===== FLOATING PETALS ===== */
+/* ===== AMBIENT PARTICLES (restrained) ===== */
 function createPetal() {
   const p = document.createElement('div');
   p.className = 'petal';
-  const colors = ['#ffc8d8','#ffd4e0','#ffb8cc','#ffe0ea','#ffaabc'];
-  const size = 8 + Math.random() * 10;
+  const colors = ['#f0c2ce','#f5d5dd','#e8a9bc','#f8e0e6'];
+  const size = 7 + Math.random() * 8;
   p.style.cssText = `left:${Math.random()*100}vw;
     width:${size}px;height:${size}px;
     background:${colors[Math.floor(Math.random()*colors.length)]};
-    border-radius:50% 0 50% 50%;
-    opacity:.5;
-    animation-duration:${10+Math.random()*12}s;`;
+    border-radius:50% 0 50% 50%;opacity:.45;
+    animation-duration:${13+Math.random()*10}s;`;
   document.body.appendChild(p);
-  setTimeout(() => p.remove(), 22000);
+  setTimeout(() => p.remove(), 24000);
 }
-
-/* ===== FLOATING HEARTS ===== */
-function createHeartFloat() {
-  const h = document.createElement('div');
-  h.className = 'heart-float';
-  h.innerHTML = Math.random() > .5 ? '♡' : '♥';
-  h.style.cssText = `left:${Math.random()*100}vw;
-    font-size:${10+Math.random()*16}px;
-    color:rgba(230,100,150,${.15+Math.random()*.2});
-    animation-duration:${9+Math.random()*11}s;`;
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 20000);
-}
-
-/* ===== SPARKLES ===== */
 function createSparkle() {
   const s = document.createElement('div');
   s.className = 'sparkle';
   s.innerHTML = '✦';
   s.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;
-    font-size:${6+Math.random()*10}px;
+    font-size:${6+Math.random()*8}px;
     animation-delay:${Math.random()*3}s;
-    animation-duration:${2+Math.random()*3}s;`;
+    animation-duration:${2.5+Math.random()*2.5}s;`;
   document.body.appendChild(s);
-  setTimeout(() => s.remove(), 6000);
+  setTimeout(() => s.remove(), 6500);
+}
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  setInterval(createPetal, 2600);
+  setInterval(createSparkle, 3400);
+  createPetal(); createSparkle(); createSparkle();
 }
 
-/* ===== START AMBIENT ===== */
-setInterval(createPetal, 1800);
-setInterval(createHeartFloat, 2200);
-setInterval(createSparkle, 3000);
-createPetal(); createPetal(); createPetal();
-createHeartFloat(); createHeartFloat();
-createSparkle(); createSparkle(); createSparkle();
-
-/* ===== HEART POP ANIMATION ===== */
 document.getElementById('explosionStyle').textContent = `
 @keyframes heartPop {
   0% { opacity:1; transform:translate(0,0) scale(.4) }
-  100% { opacity:0; transform:translate(${(Math.random()-.5)*120}px,${-100-Math.random()*80}px) scale(1.6) rotate(${Math.random()*60-30}deg) }
+  100% { opacity:0; transform:translate(${(Math.random()-.5)*110}px, ${-90-Math.random()*70}px) scale(1.5) rotate(${Math.random()*50-25}deg) }
 }`;
+
+/* ===== SCROLL REVEAL ===== */
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in'));
+}
 </script>
 </body>
 </html>
