@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something For You</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root{
+  --bg:#07070b;
+  --text:#f8f4f0;
+  --muted:#aaa4aa;
+  --accent:#e9a8bd;
+  --accent2:#f6d6df;
+  --glass:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.12);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% 15%, rgba(177,94,128,.18), transparent 30%),
+    radial-gradient(circle at 15% 80%, rgba(92,65,120,.12), transparent 28%),
+    var(--bg);
+  font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.45) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,210,225,.3) 0 1px, transparent 1.5px);
+  background-size: 95px 95px, 137px 137px;
+  background-position: 10px 20px, 40px 70px;
+  opacity:.23;
+  animation: drift 28s linear infinite;
+}
+@keyframes drift{to{background-position:110px 120px, -70px 10px}}
+
+#intro{
+  position:fixed; inset:0; z-index:20;
+  display:grid; place-items:center;
+  background:#050509;
+  transition:opacity 1.2s ease, visibility 1.2s ease;
+}
+#intro.hidden{opacity:0; visibility:hidden; pointer-events:none}
+.intro-inner{text-align:center; padding:24px; animation:fadeUp 1.4s ease both}
+.eyebrow{
+  text-transform:uppercase; letter-spacing:.32em; font-size:10px;
+  color:var(--muted); margin-bottom:18px;
+}
+h1,h2,.serif{font-family:"Cormorant Garamond",serif}
+.intro-title{
+  font-size:clamp(48px,9vw,92px); line-height:.9; font-weight:500;
+  margin:0 0 22px;
+}
+.intro-title em{color:var(--accent); font-style:normal}
+.intro-sub{color:var(--muted); max-width:520px; margin:auto; line-height:1.7}
+.enter{
+  margin-top:34px; border:1px solid var(--line); background:rgba(255,255,255,.05);
+  color:var(--text); padding:13px 22px; border-radius:999px; cursor:pointer;
+  transition:.3s; letter-spacing:.08em; text-transform:uppercase; font-size:11px;
+}
+.enter:hover{background:rgba(255,255,255,.11); transform:translateY(-2px)}
+
+main{min-height:100vh; opacity:0; transition:opacity 1s ease}
+main.visible{opacity:1}
+
+.hero{
+  min-height:88vh; display:grid; place-items:center; text-align:center;
+  padding:100px 20px 70px; position:relative;
+}
+.hero h2{font-size:clamp(44px,8vw,84px); font-weight:500; line-height:.95; margin:0}
+.hero h2 span{color:var(--accent)}
+.hero p{max-width:570px; color:var(--muted); line-height:1.8; margin:24px auto 0}
+.scroll{
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+  font-size:10px; text-transform:uppercase; letter-spacing:.25em; color:#777;
+}
+.scroll:after{content:""; display:block; width:1px; height:38px; background:#444; margin:12px auto 0}
+
+.gifts{max-width:1120px; margin:auto; padding:60px 20px 130px}
+.section-head{text-align:center; margin-bottom:52px}
+.section-head h2{font-size:48px; margin:0 0 10px; font-weight:500}
+.section-head p{color:var(--muted); margin:0}
+
+.gift-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+}
+@media(max-width:800px){.gift-grid{grid-template-columns:1fr; max-width:440px; margin:auto}}
+
+.gift{
+  position:relative; min-height:390px; border:1px solid var(--line);
+  border-radius:26px; background:linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+  backdrop-filter:blur(18px); overflow:hidden; cursor:pointer;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s, box-shadow .5s;
+  perspective:900px;
+}
+.gift:hover{transform:translateY(-9px); border-color:rgba(233,168,189,.45); box-shadow:0 25px 70px rgba(0,0,0,.35)}
+.gift-number{
+  position:absolute; top:20px; left:22px; z-index:2; color:#858087;
+  font-size:10px; letter-spacing:.18em;
+}
+.gift-content{height:100%; min-height:390px; display:grid; place-items:center; padding:34px; text-align:center}
+.box{
+  width:132px; height:105px; position:relative; margin:auto auto 25px;
+  transform-style:preserve-3d; transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.box-base{
+  position:absolute; bottom:0; left:10px; width:112px; height:78px;
+  background:linear-gradient(145deg,#8e415e,#572337);
+  border-radius:5px 5px 10px 10px;
+  box-shadow:inset 10px 0 18px rgba(255,255,255,.06), 0 18px 25px rgba(0,0,0,.35);
+}
+.box-lid{
+  position:absolute; top:13px; left:4px; width:124px; height:28px;
+  background:linear-gradient(145deg,#b7607c,#6c2d43); border-radius:5px;
+  transform-origin:10px 20px; transition:transform .8s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 6px 10px rgba(0,0,0,.3);
+}
+.ribbon-v{position:absolute; top:0; left:57px; width:18px; height:105px; background:#f0b6c9; opacity:.9}
+.ribbon-h{position:absolute; top:13px; left:4px; width:124px; height:9px; background:#f0b6c9; opacity:.9}
+.gift:hover .box{transform:rotateX(4deg) rotateY(-8deg) translateY(-5px)}
+.gift:hover .box-lid{transform:rotate(-12deg) translateY(-9px) translateX(5px)}
+.gift-title{font-family:"Cormorant Garamond",serif; font-size:31px; margin:0 0 8px}
+.gift-desc{font-size:12px; color:var(--muted); line-height:1.7; max-width:230px; margin:0 auto}
+.tap{margin-top:20px; font-size:9px; text-transform:uppercase; letter-spacing:.2em; color:var(--accent2)}
+
+.modal{
+  position:fixed; inset:0; z-index:30; display:grid; place-items:center; padding:20px;
+  background:rgba(0,0,0,.78); backdrop-filter:blur(16px);
+  opacity:0; visibility:hidden; transition:.45s ease;
+}
+.modal.open{opacity:1; visibility:visible}
+.modal-card{
+  width:min(850px,100%); max-height:90vh; overflow:auto;
+  background:linear-gradient(145deg,#111116,#0a0a0e);
+  border:1px solid var(--line); border-radius:28px; position:relative;
+  padding:28px; box-shadow:0 40px 120px rgba(0,0,0,.7);
+  transform:translateY(20px) scale(.98); transition:.5s ease;
+}
+.modal.open .modal-card{transform:none}
+.close{
+  position:absolute; right:18px; top:16px; z-index:2; width:36px; height:36px;
+  border-radius:50%; border:1px solid var(--line); background:rgba(255,255,255,.06);
+  color:white; cursor:pointer; font-size:18px;
+}
+.modal-label{font-size:10px; text-transform:uppercase; letter-spacing:.24em; color:var(--accent); margin-bottom:12px}
+.modal h3{font:500 46px/1 "Cormorant Garamond",serif; margin:0 0 18px}
+.modal p{color:#c2bcc1; line-height:1.9; font-size:15px}
+.photo-wrap{border-radius:18px; overflow:hidden; margin-top:15px; border:1px solid var(--line)}
+.photo-wrap img{width:100%; display:block; max-height:65vh; object-fit:contain; background:#050509}
+
+.letter{
+  max-width:690px; margin:auto; text-align:left; padding:25px 10px 10px;
+}
+.letter .heartline{text-align:center; color:var(--accent); font-size:22px; margin:8px 0 22px}
+.letter strong{color:#f5e8ed}
+
+.cute{
+  min-height:430px; display:grid; place-items:center; text-align:center; position:relative;
+  overflow:hidden;
+}
+.cute-heart{
+  width:105px; height:105px; transform:rotate(-45deg);
+  background:linear-gradient(145deg,#f3b4c9,#9b4865); border-radius:18px 0 18px 0;
+  box-shadow:0 0 70px rgba(233,168,189,.3);
+  cursor:pointer; transition:.35s;
+}
+.cute-heart:before,.cute-heart:after{
+  content:""; position:absolute; width:105px; height:105px; background:inherit; border-radius:50%;
+}
+.cute-heart:before{top:-52px; left:0}
+.cute-heart:after{left:52px; top:0}
+.cute-heart:hover{transform:rotate(-45deg) scale(1.08)}
+.heart-label{position:absolute; z-index:1; font-family:"Cormorant Garamond",serif; font-size:23px; transform:rotate(0deg); color:white; pointer-events:none}
+.cute-note{margin-top:28px; color:var(--muted); font-size:12px; line-height:1.7}
+.reasons{display:none; margin-top:25px; gap:10px; flex-wrap:wrap; justify-content:center}
+.reasons.show{display:flex; animation:fadeUp .7s ease}
+.reason{
+  border:1px solid var(--line); border-radius:999px; padding:9px 13px;
+  background:rgba(255,255,255,.04); font-size:11px; color:#ddd;
+}
+
+.footer{text-align:center; padding:0 20px 60px; color:#625e63; font-size:10px; letter-spacing:.12em; text-transform:uppercase}
+
+@keyframes fadeUp{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:none}}
+.float-heart{
+  position:fixed; z-index:40; pointer-events:none; color:var(--accent);
+  animation:floatUp 1.8s ease-out forwards; font-size:18px;
+}
+@keyframes floatUp{
+  0%{opacity:0; transform:translate(-50%,0) scale(.5)}
+  15%{opacity:1}
+  100%{opacity:0; transform:translate(-50%,-170px) scale(1.5) rotate(15deg)}
+}
+</style>
+</head>
+<body>
+
+<section id="intro">
+  <div class="intro-inner">
+    <div class="eyebrow">A small digital gift</div>
+    <h1 class="intro-title">For <em>you.</em></h1>
+    <p class="intro-sub">Three little gifts. One screen. A few things I wanted to say.</p>
+    <button class="enter" id="enter">Open the gift</button>
+  </div>
+</section>
+
+<main id="main">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Made especially for you</div>
+      <h2>Some things are better<br>when they're <span>unwrapped.</span></h2>
+      <p>Take your time. There are three gifts waiting below — and each one has a little something different inside.</p>
+    </div>
+    <div class="scroll">scroll to discover</div>
+  </section>
+
+  <section class="gifts">
+    <div class="section-head">
+      <div class="eyebrow">01 — 02 — 03</div>
+      <h2>Choose a gift</h2>
+      <p>Click any box. You don't have to open them in order.</p>
+    </div>
+
+    <div class="gift-grid">
+      <article class="gift" data-modal="photo">
+        <span class="gift-number">01</span>
+        <div class="gift-content">
+          <div>
+            <div class="box">
+              <div class="box-base"></div>
+              <div class="ribbon-v"></div>
+              <div class="ribbon-h"></div>
+              <div class="box-lid"></div>
+            </div>
+            <h3 class="gift-title">A memory</h3>
+            <p class="gift-desc">Something I wanted to put inside this little corner of the internet.</p>
+            <div class="tap">Open me</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="gift" data-modal="letter">
+        <span class="gift-number">02</span>
+        <div class="gift-content">
+          <div>
+            <div class="box">
+              <div class="box-base"></div>
+              <div class="ribbon-v"></div>
+              <div class="ribbon-h"></div>
+              <div class="box-lid"></div>
+            </div>
+            <h3 class="gift-title">A little letter</h3>
+            <p class="gift-desc">A few words I probably should have said more clearly.</p>
+            <div class="tap">Open me</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="gift" data-modal="cute">
+        <span class="gift-number">03</span>
+        <div class="gift-content">
+          <div>
+            <div class="box">
+              <div class="box-base"></div>
+              <div class="ribbon-v"></div>
+              <div class="ribbon-h"></div>
+              <div class="box-lid"></div>
+            </div>
+            <h3 class="gift-title">One more thing</h3>
+            <p class="gift-desc">A tiny surprise. It's simple, but it's meant for you.</p>
+            <div class="tap">Open me</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="footer">made with a little too much thought</div>
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="close" id="close">×</button>
+
+    <div class="modal-content" id="photo">
+      <div class="modal-label">Gift 01</div>
+      <h3>A memory, kept here.</h3>
+      <div class="photo-wrap">
+        <img src="gift-photo.png" alt="A special memory">
+      </div>
+    </div>
+
+    <div class="modal-content" id="letter" style="display:none">
+      <div class="modal-label">Gift 02</div>
+      <div class="letter">
+        <h3>I'm sorry. And I love you.</h3>
+        <div class="heartline">♡</div>
+        <p>
+          I know an apology is only the beginning, but I still wanted to say it properly.
+          I'm sorry for the moments when I could have listened better, understood better,
+          or simply been there a little more. I never want you to feel like your feelings
+          don't matter to me.
+        </p>
+        <p>
+          You mean a lot to me, and I care about the little things — the random conversations,
+          the laughs, the memories, and even the ordinary moments that somehow become special.
+          I don't expect one paragraph to fix everything. I just wanted you to know that
+          <strong>I'm genuinely sorry</strong>, and that <strong>I love you</strong>.
+        </p>
+        <p>
+          Thank you for being you. I hope this tiny website makes you smile, even if only
+          for a moment.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-content" id="cute" style="display:none">
+      <div class="modal-label">Gift 03</div>
+      <div class="cute">
+        <div>
+          <div class="cute-heart" id="cuteHeart"></div>
+          <div class="heart-label">tap me</div>
+          <div class="cute-note">There are a few things I like about you. Tap the heart.</div>
+          <div class="reasons" id="reasons">
+            <span class="reason">your smile</span>
+            <span class="reason">your laugh</span>
+            <span class="reason">your kindness</span>
+            <span class="reason">the way you make ordinary days better</span>
+            <span class="reason">just… you</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const enter = document.getElementById("enter");
+const modal = document.getElementById("modal");
+const close = document.getElementById("close");
+
+enter.addEventListener("click", () => {
+  intro.classList.add("hidden");
+  main.classList.add("visible");
+});
+
+document.querySelectorAll(".gift").forEach(gift => {
+  gift.addEventListener("click", () => openModal(gift.dataset.modal));
+});
+
+function openModal(name){
+  document.querySelectorAll(".modal-content").forEach(x => x.style.display = "none");
+  document.getElementById(name).style.display = "block";
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(){
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+close.addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+
+const cuteHeart = document.getElementById("cuteHeart");
+const reasons = document.getElementById("reasons");
+
+cuteHeart.addEventListener("click", e => {
+  reasons.classList.add("show");
+  for(let i=0;i<10;i++){
+    const h=document.createElement("div");
+    h.className="float-heart";
+    h.textContent="♥";
+    h.style.left=(e.clientX + (Math.random()*100-50))+"px";
+    h.style.top=(e.clientY + (Math.random()*50-25))+"px";
+    h.style.fontSize=(12+Math.random()*18)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1800);
+  }
+});
+</script>
+</body>
+</html>
