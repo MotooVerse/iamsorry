@@ -3,1510 +3,864 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>A Little Something For You ♡</title>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --pink: #ff8fb3;
-    --light-pink: #ffd6e3;
-    --soft-pink: #ffeaf1;
-    --deep-pink: #c94f78;
-    --white: #fff8fb;
-    --text: #49323b;
-    --muted: #9b7d88;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
-    font-family: "DM Sans", sans-serif;
-    color: var(--text);
-
-    background:
-        radial-gradient(circle at 15% 15%, rgba(255, 170, 198, .45), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(255, 211, 225, .7), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(255, 178, 204, .4), transparent 40%),
-        #fff5f8;
-
-    overflow-x: hidden;
-}
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-.heart {
-    position: fixed;
-    pointer-events: none;
-    color: rgba(231, 110, 151, .35);
-    animation: floatHeart linear forwards;
-    z-index: 0;
-}
-
-@keyframes floatHeart {
-    0% {
-        transform: translateY(110vh) rotate(0deg);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-15vh) rotate(25deg);
-        opacity: 0;
-    }
-}
-
-/* =========================
-   INTRO
-========================= */
-
-#intro {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        radial-gradient(circle at center, #ffe4ed 0%, #ffd0df 35%, #f9a8c2 100%);
-
-    transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
-}
-
-#intro.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.intro-content {
-    text-align: center;
-    padding: 30px;
-    animation: introAppear 1.5s ease;
-}
-
-@keyframes introAppear {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.small-title {
-    font-size: 11px;
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    color: #a55a76;
-    margin-bottom: 20px;
-}
-
-.intro-content h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(65px, 12vw, 125px);
-    font-weight: 500;
-    line-height: .8;
-    color: #713d51;
-}
-
-.intro-content h1 span {
-    color: #c84f79;
-    font-style: italic;
-}
-
-.intro-sub {
-    margin-top: 30px;
-    color: #8c6070;
-    font-size: 14px;
-    line-height: 1.8;
-}
-
-.open-button {
-    margin-top: 35px;
-
-    border: none;
-    background: #fff8fb;
-    color: #a7476b;
-
-    padding: 15px 28px;
-    border-radius: 999px;
-
-    font-family: inherit;
-    font-size: 11px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 12px 30px rgba(169, 69, 106, .18);
-
-    transition: .35s ease;
-}
-
-.open-button:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow:
-        0 18px 40px rgba(169, 69, 106, .25);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-main {
-    position: relative;
-    z-index: 2;
-
-    opacity: 0;
-
-    transition: opacity 1.5s ease;
-}
-
-main.show {
-    opacity: 1;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 90vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 100px 25px;
-
-    position: relative;
-}
-
-.hero-inner {
-    max-width: 750px;
-}
-
-.hero .tiny {
-    text-transform: uppercase;
-    letter-spacing: .35em;
-    font-size: 10px;
-    color: #b06c84;
-}
-
-.hero h2 {
-    margin-top: 20px;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(50px, 8vw, 90px);
-    font-weight: 500;
-    line-height: .95;
-
-    color: #603b49;
-}
-
-.hero h2 em {
-    color: #d75c86;
-}
-
-.hero p {
-    margin: 25px auto 0;
-
-    max-width: 570px;
-
-    color: #927582;
-    font-size: 14px;
-    line-height: 1.9;
-}
-
-.scroll {
-    position: absolute;
-    bottom: 30px;
-
-    left: 50%;
-    transform: translateX(-50%);
-
-    font-size: 9px;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-
-    color: #b48a99;
-}
-
-.scroll::after {
-    content: "";
-    display: block;
-
-    width: 1px;
-    height: 35px;
-
-    margin: 12px auto 0;
-
-    background: #d59caf;
-}
-
-/* =========================
-   GIFTS
-========================= */
-
-.gifts {
-    max-width: 1150px;
-
-    margin: auto;
-
-    padding: 70px 25px 140px;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.section-title .number {
-    color: #c96786;
-
-    font-size: 10px;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-}
-
-.section-title h2 {
-    margin-top: 10px;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: 55px;
-    font-weight: 500;
-
-    color: #603b49;
-}
-
-.section-title p {
-    margin-top: 8px;
-
-    color: #9b7c88;
-    font-size: 13px;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --pink:#ff7eb3;
+  --light-pink:#ffd6e3;
+  --soft-pink:#ffeaf1;
+  --blush:#fff0f5;
+  --deep-pink:#e05285;
+  --rose:#c94070;
+  --warm-pink:#ffacc5;
+  --peach:#ffe0e8;
+  --white:#fffbfc;
+  --text:#4a2030;
+  --muted:#a07080;
+  --cream:#fff8fa;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  min-height:100vh;
+  font-family:"DM Sans",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 10% 10%,rgba(255,180,210,.5),transparent 40%),
+    radial-gradient(ellipse at 90% 15%,rgba(255,200,220,.6),transparent 35%),
+    radial-gradient(ellipse at 50% 90%,rgba(255,170,200,.35),transparent 40%),
+    radial-gradient(ellipse at 30% 60%,rgba(255,220,235,.3),transparent 30%),
+    linear-gradient(180deg,#fff5f8 0%,#ffeef3 50%,#fff0f5 100%);
+  overflow-x:hidden;
+}
+
+/* ========== FLOATING ELEMENTS ========== */
+.petal{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  animation:fallPetal linear forwards;
+}
+@keyframes fallPetal{
+  0%{transform:translateY(-10vh) rotate(0deg) translateX(0);opacity:0}
+  10%{opacity:.7}
+  50%{transform:translateY(50vh) rotate(180deg) translateX(30px)}
+  100%{transform:translateY(110vh) rotate(360deg) translateX(-20px);opacity:0}
+}
+
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  color:rgba(255,180,210,.6);
+  animation:twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:0;transform:scale(.5)}
+  50%{opacity:1;transform:scale(1.2)}
+}
+
+.heart-float{
+  position:fixed;
+  pointer-events:none;
+  z-index:0;
+  animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) rotate(0deg) scale(.8);opacity:0}
+  15%{opacity:.4}
+  85%{opacity:.3}
+  100%{transform:translateY(-15vh) rotate(20deg) scale(1.1);opacity:0}
+}
+
+/* ========== INTRO ========== */
+#intro{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(255,200,220,.8),transparent 50%),
+    radial-gradient(circle at 70% 60%,rgba(255,180,210,.6),transparent 40%),
+    radial-gradient(circle at 50% 80%,rgba(255,220,235,.5),transparent 30%),
+    linear-gradient(145deg,#ffe8f0 0%,#ffd4e2 40%,#ffb8d0 100%);
+  transition:opacity 1.4s ease,visibility 1.4s ease;
+  overflow:hidden;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+.intro-deco{
+  position:absolute;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  filter:blur(40px);
+}
+.intro-deco:nth-child(1){top:-80px;left:-60px}
+.intro-deco:nth-child(2){bottom:-100px;right:-80px;width:400px;height:400px}
+
+.intro-content{
+  text-align:center;padding:30px;
+  position:relative;z-index:2;
+  animation:introIn 1.8s cubic-bezier(.2,.8,.2,1);
 }
-
-/* =========================
-   GIFT CARDS
-========================= */
-
-.gift-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-@media(max-width: 850px) {
-    .gift-grid {
-        grid-template-columns: 1fr;
-        max-width: 450px;
-        margin: auto;
-    }
-}
-
-.gift {
-    position: relative;
-
-    min-height: 410px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.85),
-            rgba(255,235,242,.7)
-        );
-
-    border: 1px solid rgba(255,255,255,.9);
-
-    box-shadow:
-        0 20px 60px rgba(170, 78, 108, .12);
-
-    overflow: hidden;
-
-    cursor: pointer;
-
-    transition:
-        transform .5s cubic-bezier(.2,.8,.2,1),
-        box-shadow .5s ease;
-}
-
-.gift::before {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 177, 201, .22);
-
-    top: -80px;
-    right: -70px;
-}
-
-.gift:hover {
-    transform: translateY(-12px) rotateX(2deg);
-    box-shadow:
-        0 30px 80px rgba(170, 78, 108, .2);
-}
-
-.gift-number {
-    position: absolute;
-
-    top: 20px;
-    left: 23px;
-
-    font-size: 10px;
-    letter-spacing: .2em;
-
-    color: #c58b9e;
+@keyframes introIn{
+  from{opacity:0;transform:translateY(40px) scale(.95)}
+  to{opacity:1;transform:none}
 }
-
-.gift-inside {
-    min-height: 410px;
-
-    display: flex;
-    flex-direction: column;
 
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 35px;
+.intro-flower{
+  display:inline-block;
+  margin-bottom:15px;
+  animation:gentleSway 3s ease-in-out infinite;
 }
-
-/* =========================
-   GIFT BOX
-========================= */
-
-.box {
-    width: 130px;
-    height: 110px;
-
-    position: relative;
-
-    margin-bottom: 28px;
-
-    transition: .6s ease;
+@keyframes gentleSway{
+  0%,100%{transform:rotate(-5deg)}
+  50%{transform:rotate(5deg)}
 }
 
-.gift:hover .box {
-    transform: translateY(-8px) rotate(-2deg);
+.intro-label{
+  font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+  color:#a55a76;margin-bottom:22px;
 }
-
-.box-base {
-    position: absolute;
-
-    left: 12px;
-    bottom: 0;
 
-    width: 106px;
-    height: 75px;
-
-    border-radius: 5px 5px 12px 12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f48bab,
-            #d75a82
-        );
-
-    box-shadow:
-        0 15px 25px rgba(186, 70, 105, .22);
+.intro-content h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(60px,13vw,130px);
+  font-weight:400;line-height:.85;
+  color:#6e2d47;
+  text-shadow:0 2px 30px rgba(200,80,120,.15);
 }
-
-.box-lid {
-    position: absolute;
-
-    left: 5px;
-    top: 18px;
-
-    width: 120px;
-    height: 27px;
-
-    border-radius: 6px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffadc5,
-            #e36a90
-        );
-
-    transition: .6s ease;
+.intro-content h1 em{
+  color:var(--deep-pink);font-style:italic;
 }
 
-.gift:hover .box-lid {
-    transform:
-        rotate(-8deg)
-        translate(-3px,-9px);
+.intro-sub{
+  margin-top:28px;color:#8a6070;font-size:13px;line-height:2;
+  max-width:380px;margin-left:auto;margin-right:auto;
 }
-
-.ribbon-v {
-    position: absolute;
 
-    left: 57px;
-    bottom: 0;
-
-    width: 17px;
-    height: 92px;
-
-    background: #ffe0e9;
+.open-btn{
+  margin-top:35px;
+  border:none;
+  background:linear-gradient(135deg,#fff8fb,#ffe8f0);
+  color:#b84d72;
+  padding:16px 32px;border-radius:999px;
+  font-family:inherit;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 10px 40px rgba(180,70,110,.15),0 0 0 1px rgba(255,200,220,.5);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
 }
-
-.ribbon-h {
-    position: absolute;
-
-    left: 5px;
-    top: 25px;
-
-    width: 120px;
-    height: 8px;
-
-    background: #ffe0e9;
+.open-btn::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.6) 50%,transparent 60%);
+  transform:translateX(-100%);
+  transition:.6s;
 }
-
-.gift h3 {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 32px;
-    font-weight: 600;
-
-    color: #704454;
+.open-btn:hover::after{transform:translateX(100%)}
+.open-btn:hover{
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 18px 50px rgba(180,70,110,.22),0 0 0 1px rgba(255,200,220,.6);
 }
-
-.gift p {
-    max-width: 250px;
-
-    margin-top: 8px;
 
-    color: #9b7b88;
-
-    font-size: 12px;
-    line-height: 1.7;
+/* ========== MAIN ========== */
+main{
+  position:relative;z-index:2;
+  opacity:0;transition:opacity 1.8s ease;
 }
-
-.open-text {
-    margin-top: 20px;
-
-    font-size: 9px !important;
-
-    letter-spacing: .22em;
+main.show{opacity:1}
 
-    text-transform: uppercase;
-
-    color: #cc6686 !important;
+/* ========== HERO ========== */
+.hero{
+  min-height:92vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:100px 25px;position:relative;
 }
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 200;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    padding: 20px;
+.hero-inner{max-width:720px;position:relative;z-index:2}
 
-    background: rgba(79, 36, 52, .45);
-
-    backdrop-filter: blur(18px);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .45s ease;
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  text-transform:uppercase;letter-spacing:.35em;font-size:9px;
+  color:#b06c84;
+  background:rgba(255,220,235,.5);
+  padding:8px 18px;border-radius:999px;
+  border:1px solid rgba(255,200,220,.6);
 }
-
-.modal.open {
-    opacity: 1;
-    visibility: visible;
+.hero-tag .dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--pink);
+  animation:pulse 2s ease infinite;
 }
-
-.modal-card {
-    position: relative;
-
-    width: min(850px, 100%);
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 35px;
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 
-    border-radius: 32px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.98),
-            rgba(255,235,242,.96)
-        );
-
-    box-shadow:
-        0 40px 100px rgba(80, 25, 45, .3);
-
-    transform: translateY(25px) scale(.96);
-
-    transition: .5s ease;
+.hero h2{
+  margin-top:28px;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(42px,8vw,82px);
+  font-weight:400;line-height:1.05;
+  color:#552840;
 }
+.hero h2 em{color:var(--deep-pink);font-style:italic}
 
-.modal.open .modal-card {
-    transform: none;
+.hero p{
+  margin:22px auto 0;max-width:520px;
+  color:#987582;font-size:13px;line-height:2;
 }
-
-.close {
-    position: absolute;
-
-    top: 17px;
-    right: 18px;
-
-    width: 38px;
-    height: 38px;
-
-    border: none;
-
-    border-radius: 50%;
 
-    background: #ffe1ea;
-
-    color: #a54f6e;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    transition: .3s;
+.scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
 }
-
-.close:hover {
-    transform: rotate(90deg);
-    background: #ffcbdc;
+.scroll-hint span{
+  font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:#c49aaa;
 }
-
-.modal-label {
-    font-size: 9px;
-
-    letter-spacing: .3em;
-
-    text-transform: uppercase;
-
-    color: #cc6686;
+.scroll-line{
+  width:1px;height:30px;
+  background:linear-gradient(to bottom,#d59caf,transparent);
+  animation:scrollPulse 2s ease infinite;
 }
-
-.modal h3 {
-    margin-top: 10px;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 52px;
-    font-weight: 500;
-
-    color: #673d4c;
+@keyframes scrollPulse{
+  0%,100%{opacity:.3;transform:scaleY(.7)}
+  50%{opacity:1;transform:scaleY(1)}
 }
 
-/* =========================
-   PHOTO
-========================= */
-
-.photo-container {
-    margin-top: 25px;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 15px 50px rgba(130, 54, 80, .15);
+/* ========== DECORATIVE DIVIDER ========== */
+.divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:15px;padding:20px 25px;
 }
-
-.photo-container img {
-    width: 100%;
+.divider-line{width:60px;height:1px;background:linear-gradient(to right,transparent,#f0b8cc,transparent)}
+.divider-heart{color:var(--warm-pink);font-size:14px;animation:heartbeat 1.8s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 
-    display: block;
-
-    max-height: 65vh;
-
-    object-fit: contain;
-
-    background: #ffeef4;
+/* ========== SECTION TITLE ========== */
+.section-title{text-align:center;margin-bottom:50px}
+.section-label{
+  font-size:9px;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--rose);
+  display:inline-flex;align-items:center;gap:8px;
 }
-
-/* =========================
-   LETTER
-========================= */
-
-.letter {
-    max-width: 680px;
-
-    margin: 20px auto;
-
-    text-align: center;
+.section-label::before,.section-label::after{
+  content:"";width:20px;height:1px;background:var(--light-pink);
 }
-
-.letter .big-heart {
-    font-size: 34px;
-
-    color: #dc6688;
-
-    margin: 15px 0 25px;
-
-    animation: heartbeat 1.7s infinite;
+.section-title h2{
+  margin-top:14px;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(38px,6vw,58px);
+  font-weight:400;color:#552840;
 }
+.section-title p{margin-top:6px;color:var(--muted);font-size:12px}
 
-@keyframes heartbeat {
-    0%,100% {
-        transform: scale(1);
-    }
+/* ========== GIFT GRID ========== */
+.gifts{max-width:1100px;margin:auto;padding:50px 25px 120px}
 
-    50% {
-        transform: scale(1.15);
-    }
+.gift-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
 }
-
-.letter p {
-    margin-top: 20px;
-
-    color: #80636f;
-
-    font-size: 15px;
-
-    line-height: 2;
+@media(max-width:860px){
+  .gift-grid{grid-template-columns:1fr;max-width:420px;margin:auto}
 }
 
-.letter strong {
-    color: #c65377;
+/* ========== GIFT CARD ========== */
+.gift{
+  position:relative;min-height:430px;border-radius:28px;
+  background:linear-gradient(155deg,rgba(255,255,255,.9),rgba(255,240,245,.85));
+  border:1px solid rgba(255,220,230,.8);
+  box-shadow:0 20px 60px rgba(180,70,110,.1),0 0 0 1px rgba(255,255,255,.6) inset;
+  overflow:hidden;cursor:pointer;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s ease;
 }
-
-.signature {
-    margin-top: 30px;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 27px;
-
-    color: #9f4e69;
+.gift::before{
+  content:"";position:absolute;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,180,210,.25),transparent 70%);
+  top:-90px;right:-80px;
 }
-
-/* =========================
-   CUTE GIFT
-========================= */
-
-.cute-area {
-    text-align: center;
-
-    padding: 35px 10px;
+.gift::after{
+  content:"";position:absolute;
+  width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,200,220,.15),transparent 70%);
+  bottom:-60px;left:-50px;
+}
+.gift:hover{
+  transform:translateY(-14px) scale(1.01);
+  box-shadow:0 35px 80px rgba(180,70,110,.18),0 0 0 1px rgba(255,255,255,.8) inset;
+}
+
+.gift-num{
+  position:absolute;top:18px;left:20px;
+  font-size:9px;letter-spacing:.2em;color:#c88aa0;
+  font-weight:500;
+}
+
+.gift-inner{
+  min-height:430px;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:30px 25px;position:relative;z-index:2;
+}
+
+/* ========== CSS GIFT BOX ========== */
+.gift-box{width:120px;height:100px;position:relative;margin-bottom:24px;transition:.5s ease}
+.gift:hover .gift-box{transform:translateY(-8px) rotate(-2deg)}
+
+.box-body{
+  position:absolute;left:10px;bottom:0;width:100px;height:70px;
+  border-radius:4px 4px 10px 10px;
+  background:linear-gradient(145deg,#f7a0bd,#e05585);
+  box-shadow:0 12px 25px rgba(200,70,110,.2);
+}
+.box-lid{
+  position:absolute;left:3px;top:15px;width:114px;height:24px;
+  border-radius:5px;
+  background:linear-gradient(145deg,#ffbdd0,#e8709a);
+  transition:.5s ease;
+}
+.gift:hover .box-lid{transform:rotate(-10deg) translate(-4px,-10px)}
+
+.box-ribbon-v{
+  position:absolute;left:54px;bottom:0;width:14px;height:84px;
+  background:linear-gradient(to right,#ffe8ef,#ffd0dd,#ffe8ef);
+}
+.box-ribbon-h{
+  position:absolute;left:3px;top:22px;width:114px;height:7px;
+  background:linear-gradient(to bottom,#ffe8ef,#ffd0dd,#ffe8ef);
 }
-
-.cute-heart {
-    width: 105px;
-    height: 105px;
-
-    margin: 40px auto;
-
-    position: relative;
-
-    transform: rotate(-45deg);
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffabc5,
-            #dc6088
-        );
-
-    border-radius: 15px 0 15px 0;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 15px 50px rgba(210, 82, 120, .3);
-
-    transition: .35s ease;
+.box-bow{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:30px;height:16px;
 }
-
-.cute-heart::before,
-.cute-heart::after {
-    content: "";
-
-    position: absolute;
-
-    width: 105px;
-    height: 105px;
-
-    border-radius: 50%;
-
-    background: inherit;
+.box-bow::before,.box-bow::after{
+  content:"";position:absolute;top:0;
+  width:18px;height:16px;border-radius:50% 50% 0 0;
+  background:linear-gradient(to bottom,#ffe0ea,#ffc8d8);
 }
+.box-bow::before{left:-2px;transform:rotate(-15deg)}
+.box-bow::after{right:-2px;transform:rotate(15deg)}
 
-.cute-heart::before {
-    top: -52px;
-    left: 0;
+.gift h3{
+  font-family:"Playfair Display",serif;
+  font-size:28px;font-weight:500;color:#5e3040;
 }
-
-.cute-heart::after {
-    top: 0;
-    left: 52px;
+.gift .gift-desc{
+  max-width:230px;margin-top:8px;
+  color:#a07888;font-size:11px;line-height:1.75;
 }
-
-.cute-heart:hover {
-    transform:
-        rotate(-45deg)
-        scale(1.1);
+.gift .open-me{
+  margin-top:18px;font-size:8px!important;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--deep-pink)!important;
+  display:flex;align-items:center;gap:6px;
+  justify-content:center;
 }
-
-.heart-message {
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 28px;
-
-    color: #794354;
-
-    margin-top: 20px;
+.gift .open-me .arrow{
+  display:inline-block;
+  animation:arrowBounce 1.5s ease infinite;
 }
-
-.cute-sub {
-    margin-top: 8px;
-
-    color: #987683;
-
-    font-size: 12px;
+@keyframes arrowBounce{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(4px)}
 }
-
-.reasons {
-    display: none;
 
-    flex-wrap: wrap;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 25px;
+/* ========== MODAL ========== */
+.modal{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  background:rgba(60,20,35,.4);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  opacity:0;visibility:hidden;
+  transition:.5s ease;
 }
+.modal.open{opacity:1;visibility:visible}
 
-.reasons.show {
-    display: flex;
-
-    animation: fadeIn .7s ease;
+.modal-card{
+  position:relative;width:min(820px,100%);max-height:90vh;
+  overflow-y:auto;overflow-x:hidden;
+  padding:40px;border-radius:30px;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.98),rgba(255,242,248,.97));
+  box-shadow:0 40px 100px rgba(80,25,45,.25),0 0 0 1px rgba(255,230,240,.5);
+  transform:translateY(30px) scale(.95);
+  transition:.55s cubic-bezier(.2,.8,.2,1);
 }
-
-.reason {
-    padding: 10px 15px;
-
-    border-radius: 999px;
+.modal-card::-webkit-scrollbar{width:6px}
+.modal-card::-webkit-scrollbar-track{background:transparent}
+.modal-card::-webkit-scrollbar-thumb{background:var(--light-pink);border-radius:3px}
+.modal.open .modal-card{transform:none}
 
-    background: #fff;
-
-    border: 1px solid #ffd2df;
-
-    color: #a15370;
-
-    font-size: 11px;
-
-    box-shadow: 0 5px 15px rgba(190, 80, 115, .08);
+.close-btn{
+  position:absolute;top:16px;right:16px;z-index:10;
+  width:40px;height:40px;border:none;border-radius:50%;
+  background:linear-gradient(135deg,#ffe4ec,#ffd4e0);
+  color:#a54f6e;font-size:22px;line-height:1;
+  cursor:pointer;transition:.35s;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 15px rgba(200,80,120,.1);
 }
+.close-btn:hover{transform:rotate(90deg) scale(1.1);background:linear-gradient(135deg,#ffd8e4,#ffc8d8)}
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
+.modal-label{
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);
 }
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-
-    padding: 30px 20px 70px;
-
-    color: #b38c9a;
-
-    font-size: 10px;
-
-    letter-spacing: .15em;
-
-    text-transform: uppercase;
+.modal h3{
+  margin-top:10px;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(36px,5vw,50px);font-weight:400;color:#5e2d42;
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px) {
-
-    .modal-card {
-        padding: 25px 20px;
-    }
-
-    .modal h3 {
-        font-size: 42px;
-    }
-
-    .letter p {
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 85vh;
-    }
 
+/* ========== PHOTO MODAL ========== */
+.photo-wrap{
+  margin-top:22px;border-radius:18px;overflow:hidden;
+  box-shadow:0 15px 50px rgba(140,50,80,.12);
+  border:1px solid rgba(255,220,230,.6);
+  background:var(--blush);
+}
+.photo-wrap img{width:100%;display:block;max-height:60vh;object-fit:contain}
+
+.photo-caption{
+  text-align:center;margin-top:16px;
+  color:var(--muted);font-size:11px;font-style:italic;
+  font-family:"Cormorant Garamond",serif;font-size:15px;
+}
+
+/* ========== LETTER MODAL ========== */
+.letter-content{max-width:640px;margin:15px auto 0;text-align:center}
+
+.letter-hearts{
+  display:flex;justify-content:center;gap:8px;
+  margin:18px 0 25px;font-size:16px;color:#e88aaa;
+}
+.letter-hearts span:nth-child(2){font-size:28px;animation:heartbeat 1.7s infinite;color:var(--deep-pink)}
+
+.letter-content p{
+  margin-top:18px;color:#7a5565;font-size:14px;line-height:2.1;
+}
+.letter-content strong{color:var(--rose);font-weight:600}
+
+.letter-sign{
+  margin-top:32px;
+  font-family:"Playfair Display",serif;
+  font-size:24px;font-style:italic;color:#9f4e69;
+}
+
+/* ========== CUTE MODAL ========== */
+.cute-content{text-align:center;padding:20px 10px}
+
+.cute-heart-btn{
+  width:100px;height:100px;margin:35px auto;position:relative;
+  transform:rotate(-45deg);
+  background:linear-gradient(145deg,#ffb0c8,#e0608a);
+  border-radius:14px 0 14px 0;
+  cursor:pointer;
+  box-shadow:0 15px 50px rgba(210,82,120,.28),0 0 60px rgba(255,150,180,.15);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+.cute-heart-btn::before,.cute-heart-btn::after{
+  content:"";position:absolute;
+  width:100px;height:100px;border-radius:50%;background:inherit;
+}
+.cute-heart-btn::before{top:-50px;left:0}
+.cute-heart-btn::after{top:0;left:50px}
+.cute-heart-btn:hover{transform:rotate(-45deg) scale(1.12);box-shadow:0 20px 60px rgba(210,82,120,.35),0 0 80px rgba(255,150,180,.2)}
+
+.cute-msg{
+  font-family:"Playfair Display",serif;
+  font-size:26px;color:#6e3550;margin-top:18px;
+}
+.cute-hint{margin-top:6px;color:var(--muted);font-size:11px}
+
+.reasons-list{
+  display:none;flex-wrap:wrap;justify-content:center;gap:10px;
+  margin-top:25px;
+}
+.reasons-list.show{display:flex;animation:fadeUp .7s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.reason-chip{
+  padding:10px 16px;border-radius:999px;
+  background:linear-gradient(135deg,#fff,#fff5f8);
+  border:1px solid var(--light-pink);
+  color:#a05070;font-size:11px;
+  box-shadow:0 4px 15px rgba(200,80,120,.06);
+  transition:.3s;
+}
+.reason-chip:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(200,80,120,.12);
+  border-color:var(--warm-pink);
+}
+
+/* ========== FOOTER ========== */
+footer{
+  text-align:center;padding:20px 20px 60px;
+  color:#c4a0b0;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+}
+footer .footer-heart{color:var(--warm-pink);animation:heartbeat 1.8s infinite;display:inline-block}
+
+/* ========== CSS FLOWER ========== */
+.css-flower{display:inline-block;position:relative;width:40px;height:40px}
+.css-flower .petal{
+  position:absolute;width:14px;height:14px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ffc8d8,#ffa0bc);
+  left:50%;top:50%;
+}
+.css-flower .petal:nth-child(1){transform:translate(-50%,-50%) translateY(-10px)}
+.css-flower .petal:nth-child(2){transform:translate(-50%,-50%) translate(10px,0)}
+.css-flower .petal:nth-child(3){transform:translate(-50%,-50%) translateY(10px)}
+.css-flower .petal:nth-child(4){transform:translate(-50%,-50%) translate(-10px,0)}
+.css-flower .center{
+  position:absolute;width:8px;height:8px;border-radius:50%;
+  background:linear-gradient(135deg,#ffe0a0,#ffcc70);
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  box-shadow:0 0 8px rgba(255,200,100,.4);
+}
+
+/* ========== CSS ENVELOPE ========== */
+.css-envelope{
+  display:inline-block;position:relative;width:50px;height:35px;
+}
+.css-envelope .env-body{
+  width:50px;height:30px;border-radius:3px;
+  background:linear-gradient(145deg,#ffd4e2,#ffb8cc);
+  position:absolute;bottom:0;
+  box-shadow:0 3px 10px rgba(200,80,120,.12);
+}
+.css-envelope .env-flap{
+  width:0;height:0;
+  border-left:25px solid transparent;border-right:25px solid transparent;
+  border-top:18px solid #ffc8d8;
+  position:absolute;top:0;
+  transition:.3s;
+}
+.css-envelope .env-heart{
+  position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  color:var(--deep-pink);font-size:10px;
+  animation:heartbeat 1.8s infinite;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:600px){
+  .modal-card{padding:28px 18px}
+  .modal h3{font-size:34px}
+  .letter-content p{font-size:13px}
+  .hero{min-height:85vh}
+  .gift{min-height:380px}
+  .gift-inner{min-height:380px}
 }
 </style>
 </head>
-
 <body>
 
 <!-- INTRO -->
-
 <section id="intro">
-
-    <div class="intro-content">
-
-        <div class="small-title">
-            a tiny gift for you
-        </div>
-
-        <h1>
-            For<br>
-            <span>you.</span>
-        </h1>
-
-        <p class="intro-sub">
-            I couldn't exactly put all of this<br>
-            inside a real gift box...
-            so I made this instead.
-        </p>
-
-        <button class="open-button" id="openSite">
-            Open your gift ♡
-        </button>
-
+  <div class="intro-deco"></div>
+  <div class="intro-deco"></div>
+  <div class="intro-content">
+    <div class="intro-flower">
+      <div class="css-flower" style="transform:scale(1.3)">
+        <div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div>
+        <div class="center"></div>
+      </div>
     </div>
-
+    <div class="intro-label">a tiny gift wrapped in love</div>
+    <h1>For<br><em>you.</em></h1>
+    <p class="intro-sub">
+      I couldn't fit everything I wanted to say<br>
+      into a real box… so I made this instead.
+    </p>
+    <button class="open-btn" id="openSite">Open your gift ♡</button>
+  </div>
 </section>
 
-
 <!-- MAIN -->
-
 <main id="main">
 
-    <!-- HERO -->
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        something i made just for you
+      </div>
+      <h2>I have a few things<br>I wanted to say <em>properly.</em></h2>
+      <p>So here's a little corner of the internet that belongs only to you. Three little gifts are waiting below — take your time with them.</p>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    <section class="hero">
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-heart">♡</div>
+    <div class="divider-line"></div>
+  </div>
 
-        <div class="hero-inner">
+  <!-- GIFTS -->
+  <section class="gifts">
+    <div class="section-title">
+      <div class="section-label">three little gifts</div>
+      <h2>Pick one ♡</h2>
+      <p>though i made all three for you…</p>
+    </div>
 
-            <div class="tiny">
-                something I made for you
-            </div>
+    <div class="gift-grid">
 
-            <h2>
-                I have a few things<br>
-                I wanted to say <em>properly.</em>
-            </h2>
-
-            <p>
-                So here's a little corner of the internet that's just for you.
-                There are three gifts waiting below.
-                Take your time opening them.
-            </p>
-
+      <!-- GIFT 1 -->
+      <div class="gift" data-modal="photoModal">
+        <div class="gift-num">01</div>
+        <div class="gift-inner">
+          <div class="gift-box">
+            <div class="box-body"></div>
+            <div class="box-ribbon-v"></div>
+            <div class="box-ribbon-h"></div>
+            <div class="box-lid"></div>
+            <div class="box-bow"></div>
+          </div>
+          <h3>A little memory</h3>
+          <p class="gift-desc">Something I wanted you to keep in this tiny digital corner.</p>
+          <div class="open-me">open me <span class="arrow">→</span></div>
         </div>
+      </div>
 
-        <div class="scroll">
-            scroll
+      <!-- GIFT 2 -->
+      <div class="gift" data-modal="letterModal">
+        <div class="gift-num">02</div>
+        <div class="gift-inner">
+          <div class="gift-box">
+            <div class="box-body"></div>
+            <div class="box-ribbon-v"></div>
+            <div class="box-ribbon-h"></div>
+            <div class="box-lid"></div>
+            <div class="box-bow"></div>
+          </div>
+          <h3>A little letter</h3>
+          <p class="gift-desc">The things I should have said properly — and meant it.</p>
+          <div class="open-me">open me <span class="arrow">→</span></div>
         </div>
+      </div>
 
-    </section>
-
-
-    <!-- GIFTS -->
-
-    <section class="gifts">
-
-        <div class="section-title">
-
-            <div class="number">
-                three little gifts
-            </div>
-
-            <h2>
-                Pick one ♡
-            </h2>
-
-            <p>
-                Although... I made all three for you.
-            </p>
-
+      <!-- GIFT 3 -->
+      <div class="gift" data-modal="cuteModal">
+        <div class="gift-num">03</div>
+        <div class="gift-inner">
+          <div class="gift-box">
+            <div class="box-body"></div>
+            <div class="box-ribbon-v"></div>
+            <div class="box-ribbon-h"></div>
+            <div class="box-lid"></div>
+            <div class="box-bow"></div>
+          </div>
+          <h3>One more thing</h3>
+          <p class="gift-desc">A tiny reminder of how much you mean to me, always.</p>
+          <div class="open-me">open me <span class="arrow">→</span></div>
         </div>
+      </div>
 
+    </div>
+  </section>
 
-        <div class="gift-grid">
-
-            <!-- GIFT 1 -->
-
-            <div class="gift" data-modal="photoModal">
-
-                <div class="gift-number">
-                    01
-                </div>
-
-                <div class="gift-inside">
-
-                    <div class="box">
-
-                        <div class="box-base"></div>
-
-                        <div class="ribbon-v"></div>
-
-                        <div class="ribbon-h"></div>
-
-                        <div class="box-lid"></div>
-
-                    </div>
-
-                    <h3>
-                        A little memory
-                    </h3>
-
-                    <p>
-                        Something I wanted you to have
-                        in this tiny digital gift.
-                    </p>
-
-                    <div class="open-text">
-                        open me
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- GIFT 2 -->
-
-            <div class="gift" data-modal="letterModal">
-
-                <div class="gift-number">
-                    02
-                </div>
-
-                <div class="gift-inside">
-
-                    <div class="box">
-
-                        <div class="box-base"></div>
-
-                        <div class="ribbon-v"></div>
-
-                        <div class="ribbon-h"></div>
-
-                        <div class="box-lid"></div>
-
-                    </div>
-
-                    <h3>
-                        A little letter
-                    </h3>
-
-                    <p>
-                        The things I should have
-                        said properly.
-                    </p>
-
-                    <div class="open-text">
-                        open me
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- GIFT 3 -->
-
-            <div class="gift" data-modal="cuteModal">
-
-                <div class="gift-number">
-                    03
-                </div>
-
-                <div class="gift-inside">
-
-                    <div class="box">
-
-                        <div class="box-base"></div>
-
-                        <div class="ribbon-v"></div>
-
-                        <div class="ribbon-h"></div>
-
-                        <div class="box-lid"></div>
-
-                    </div>
-
-                    <h3>
-                        One more thing
-                    </h3>
-
-                    <p>
-                        A tiny little reminder
-                        of how much you mean to me.
-                    </p>
-
-                    <div class="open-text">
-                        open me
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-        made with love & a little bit of embarrassment ♡
-    </footer>
-
+  <footer>
+    made with love & a little bit of embarrassment <span class="footer-heart">♡</span>
+  </footer>
 </main>
 
-
-<!-- =========================
-     PHOTO MODAL
-========================= -->
-
+<!-- PHOTO MODAL -->
 <div class="modal" id="photoModal">
-
-    <div class="modal-card">
-
-        <button class="close">
-            ×
-        </button>
-
-        <div class="modal-label">
-            gift 01
-        </div>
-
-        <h3>
-            A little memory ♡
-        </h3>
-
-        <div class="photo-container">
-
-            <img
-                src="7249796112_105093272146106602_8734685621293127379670_MU.jpg"
-                alt="A special memory"
-            >
-
-        </div>
-
+  <div class="modal-card">
+    <button class="close-btn">×</button>
+    <div class="modal-label">gift 01</div>
+    <h3>A little memory ♡</h3>
+    <div class="photo-wrap">
+      <img src="7249796112_105093272146106602_8734685621293127379670_MU.jpg" alt="A special memory">
     </div>
-
+    <p class="photo-caption">"Some moments are worth keeping forever."</p>
+  </div>
 </div>
 
-
-<!-- =========================
-     LETTER MODAL
-========================= -->
-
+<!-- LETTER MODAL -->
 <div class="modal" id="letterModal">
+  <div class="modal-card">
+    <button class="close-btn">×</button>
+    <div class="letter-content">
+      <div class="modal-label">gift 02</div>
+      <h3>I'm truly sorry. ♡</h3>
+      <div class="letter-hearts">
+        <span>♡</span><span>♥</span><span>♡</span>
+      </div>
 
-    <div class="modal-card">
+      <p>
+        I know I said some things I shouldn't have said. I wasn't thinking about how my words would land, and I'm genuinely sorry for that. I should have been more careful — especially with someone I care about this much.
+      </p>
 
-        <button class="close">
-            ×
-        </button>
+      <p>
+        And about what I said as a joke — I know it wasn't funny. I know it scared you, and I hate myself for making you feel that way. It was stupid and thoughtless, and <strong>I should have never said something like that, even as a joke.</strong> I understand completely why you took it seriously. It wasn't something to joke about, and I'm sorry.
+      </p>
 
-        <div class="letter">
+      <p>
+        I don't want to make excuses. I just need you to know that <strong>I understand why you're angry.</strong> Your feelings are valid, and I should have protected them instead of hurting them.
+      </p>
 
-            <div class="modal-label">
-                gift 02
-            </div>
+      <p>
+        I'm sorry for the hurtful things I said.
+        I'm sorry for the joke that wasn't funny.
+        I'm sorry for making you worry.
+        I'm sorry for not thinking before I spoke.
+      </p>
 
-            <h3>
-                I'm sorry. ♡
-            </h3>
+      <p>
+        Most of all… <strong>I love you.</strong>
+        And I really, really don't want my own stupidity
+        to be the thing that pushes you away.
+      </p>
 
-            <div class="big-heart">
-                ♡
-            </div>
-
-            <p>
-                I know I said some things that I shouldn't have,
-                and I'm genuinely sorry for that.
-                I wasn't thinking enough about how my words
-                would make you feel.
-            </p>
-
-            <p>
-                And there was also something I said as a joke
-                that I really didn't mean seriously.
-                I understand now that it could have sounded
-                completely different from how I intended it,
-                and I am sorry that it scared or hurt you.
-            </p>
-
-            <p>
-                I don't want to make excuses for it.
-                I just want you to know that
-                <strong>I understand why you were upset.</strong>
-                Your feelings matter to me, and I should have
-                been more careful with my words.
-            </p>
-
-            <p>
-                I'm sorry for hurting you.
-                I'm sorry for making you worry.
-                And I'm sorry for not thinking before I spoke.
-            </p>
-
-            <p>
-                Most importantly...
-                <strong>I love you.</strong>
-                And I really, really don't want a stupid moment
-                to overshadow how much you mean to me.
-            </p>
-
-            <div class="signature">
-                — from someone who's really sorry ♡
-            </div>
-
-        </div>
-
+      <div class="letter-sign">— from someone who's really, truly sorry ♡</div>
     </div>
-
+  </div>
 </div>
 
-
-<!-- =========================
-     CUTE MODAL
-========================= -->
-
+<!-- CUTE MODAL -->
 <div class="modal" id="cuteModal">
-
-    <div class="modal-card">
-
-        <button class="close">
-            ×
-        </button>
-
-        <div class="cute-area">
-
-            <div class="modal-label">
-                gift 03
-            </div>
-
-            <h3>
-                One tiny secret...
-            </h3>
-
-            <div
-                class="cute-heart"
-                id="cuteHeart"
-            ></div>
-
-            <div class="heart-message">
-                You make my world softer.
-            </div>
-
-            <div class="cute-sub">
-                tap the heart ♡
-            </div>
-
-            <div
-                class="reasons"
-                id="reasons"
-            >
-
-                <div class="reason">
-                    your smile ♡
-                </div>
-
-                <div class="reason">
-                    your laugh
-                </div>
-
-                <div class="reason">
-                    your kindness
-                </div>
-
-                <div class="reason">
-                    the little things you do
-                </div>
-
-                <div class="reason">
-                    talking to you
-                </div>
-
-                <div class="reason">
-                    simply... you ♡
-                </div>
-
-            </div>
-
-        </div>
-
+  <div class="modal-card">
+    <button class="close-btn">×</button>
+    <div class="cute-content">
+      <div class="modal-label">gift 03</div>
+      <h3>One tiny secret…</h3>
+      <div class="cute-heart-btn" id="cuteHeart"></div>
+      <div class="cute-msg">You make my world softer.</div>
+      <div class="cute-hint">tap the heart ♡</div>
+      <div class="reasons-list" id="reasons">
+        <div class="reason-chip">your smile ♡</div>
+        <div class="reason-chip">your laugh</div>
+        <div class="reason-chip">your kindness</div>
+        <div class="reason-chip">the way you care</div>
+        <div class="reason-chip">talking to you</div>
+        <div class="reason-chip">your voice</div>
+        <div class="reason-chip">everything about you</div>
+        <div class="reason-chip">simply… you ♡</div>
+      </div>
     </div>
-
+  </div>
 </div>
 
+<!-- HEART EXPLOSION KEYFRAMES -->
+<style id="explosionStyle"></style>
 
 <script>
-
-/* =========================
-   INTRO
-========================= */
-
-const intro = document.getElementById("intro");
-const main = document.getElementById("main");
-const openSite = document.getElementById("openSite");
-
-openSite.addEventListener("click", () => {
-
-    intro.classList.add("hide");
-
-    setTimeout(() => {
-        main.classList.add("show");
-    }, 500);
-
+/* ===== INTRO ===== */
+const intro = document.getElementById('intro');
+const main = document.getElementById('main');
+document.getElementById('openSite').addEventListener('click', () => {
+  intro.classList.add('hide');
+  setTimeout(() => main.classList.add('show'), 500);
 });
 
-
-/* =========================
-   MODALS
-========================= */
-
-const gifts = document.querySelectorAll(".gift");
-const modals = document.querySelectorAll(".modal");
-const closeButtons = document.querySelectorAll(".close");
-
-gifts.forEach(gift => {
-
-    gift.addEventListener("click", () => {
-
-        const modalID = gift.dataset.modal;
-
-        document
-            .getElementById(modalID)
-            .classList.add("open");
-
-        document.body.style.overflow = "hidden";
-
-    });
-
+/* ===== MODALS ===== */
+const modals = document.querySelectorAll('.modal');
+document.querySelectorAll('.gift').forEach(g => {
+  g.addEventListener('click', () => {
+    document.getElementById(g.dataset.modal).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+document.querySelectorAll('.close-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    b.closest('.modal').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+modals.forEach(m => {
+  m.addEventListener('click', e => {
+    if (e.target === m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { modals.forEach(m => m.classList.remove('open')); document.body.style.overflow = ''; }
 });
 
-
-closeButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        button
-            .closest(".modal")
-            .classList.remove("open");
-
-        document.body.style.overflow = "";
-
-    });
-
+/* ===== CUTE HEART ===== */
+const reasons = document.getElementById('reasons');
+document.getElementById('cuteHeart').addEventListener('click', e => {
+  reasons.classList.add('show');
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.innerHTML = Math.random() > .5 ? '♥' : '♡';
+    h.style.cssText = `position:fixed;z-index:500;pointer-events:none;
+      left:${e.clientX + (Math.random()*160-80)}px;
+      top:${e.clientY + (Math.random()*80-40)}px;
+      color:${['#e8608a','#ff8fb3','#d44a7a','#ffacc5'][Math.floor(Math.random()*4)]};
+      font-size:${10+Math.random()*20}px;
+      animation:heartPop 1.5s ease forwards;`;
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1500);
+  }
 });
 
-
-modals.forEach(modal => {
-
-    modal.addEventListener("click", event => {
-
-        if(event.target === modal){
-
-            modal.classList.remove("open");
-
-            document.body.style.overflow = "";
-
-        }
-
-    });
-
-});
-
-
-document.addEventListener("keydown", event => {
-
-    if(event.key === "Escape") {
-
-        modals.forEach(modal => {
-            modal.classList.remove("open");
-        });
-
-        document.body.style.overflow = "";
-
-    }
-
-});
-
-
-/* =========================
-   CUTE HEART
-========================= */
-
-const cuteHeart = document.getElementById("cuteHeart");
-const reasons = document.getElementById("reasons");
-
-cuteHeart.addEventListener("click", event => {
-
-    reasons.classList.add("show");
-
-    for(let i = 0; i < 15; i++){
-
-        const heart = document.createElement("div");
-
-        heart.innerHTML = "♥";
-
-        heart.style.position = "fixed";
-        heart.style.zIndex = "500";
-        heart.style.pointerEvents = "none";
-
-        heart.style.left =
-            event.clientX +
-            (Math.random() * 160 - 80) +
-            "px";
-
-        heart.style.top =
-            event.clientY +
-            (Math.random() * 80 - 40) +
-            "px";
-
-        heart.style.color = "#df6b8e";
-
-        heart.style.fontSize =
-            (10 + Math.random() * 18) +
-            "px";
-
-        heart.style.animation =
-            "heartExplosion 1.6s ease forwards";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 1600);
-
-    }
-
-});
-
-
-/* =========================
-   FLOATING HEART BACKGROUND
-========================= */
-
-function createHeart(){
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML =
-        Math.random() > .5 ? "♡" : "♥";
-
-    heart.style.left =
-        Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-        (10 + Math.random() * 18) + "px";
-
-    heart.style.animationDuration =
-        (8 + Math.random() * 10) + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 18000);
-
+/* ===== FLOATING PETALS ===== */
+function createPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  const colors = ['#ffc8d8','#ffd4e0','#ffb8cc','#ffe0ea','#ffaabc'];
+  const size = 8 + Math.random() * 10;
+  p.style.cssText = `left:${Math.random()*100}vw;
+    width:${size}px;height:${size}px;
+    background:${colors[Math.floor(Math.random()*colors.length)]};
+    border-radius:50% 0 50% 50%;
+    opacity:.5;
+    animation-duration:${10+Math.random()*12}s;`;
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 22000);
 }
 
-setInterval(createHeart, 1200);
-
-
-/* =========================
-   HEART EXPLOSION
-========================= */
-
-const style = document.createElement("style");
-
-style.innerHTML = `
-
-@keyframes heartExplosion {
-
-    0% {
-        opacity: 1;
-        transform: translate(0,0) scale(.5);
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translate(
-                ${Math.random() * 100 - 50}px,
-                -130px
-            )
-            scale(1.5);
-    }
-
+/* ===== FLOATING HEARTS ===== */
+function createHeartFloat() {
+  const h = document.createElement('div');
+  h.className = 'heart-float';
+  h.innerHTML = Math.random() > .5 ? '♡' : '♥';
+  h.style.cssText = `left:${Math.random()*100}vw;
+    font-size:${10+Math.random()*16}px;
+    color:rgba(230,100,150,${.15+Math.random()*.2});
+    animation-duration:${9+Math.random()*11}s;`;
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 20000);
 }
 
-`;
+/* ===== SPARKLES ===== */
+function createSparkle() {
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.innerHTML = '✦';
+  s.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;
+    font-size:${6+Math.random()*10}px;
+    animation-delay:${Math.random()*3}s;
+    animation-duration:${2+Math.random()*3}s;`;
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 6000);
+}
 
-document.head.appendChild(style);
+/* ===== START AMBIENT ===== */
+setInterval(createPetal, 1800);
+setInterval(createHeartFloat, 2200);
+setInterval(createSparkle, 3000);
+createPetal(); createPetal(); createPetal();
+createHeartFloat(); createHeartFloat();
+createSparkle(); createSparkle(); createSparkle();
 
+/* ===== HEART POP ANIMATION ===== */
+document.getElementById('explosionStyle').textContent = `
+@keyframes heartPop {
+  0% { opacity:1; transform:translate(0,0) scale(.4) }
+  100% { opacity:0; transform:translate(${(Math.random()-.5)*120}px,${-100-Math.random()*80}px) scale(1.6) rotate(${Math.random()*60-30}deg) }
+}`;
 </script>
-
 </body>
 </html>
